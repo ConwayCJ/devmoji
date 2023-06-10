@@ -11,16 +11,21 @@ import Data from './assets/Data';
 import Error from './components/Error'
 import Exit from './components/Exit';
 
+interface PromptData {
+  answer: string
+  prompt: any[]
+}
+
 const initialRoutes = [{
   path: '/',
   element: <LandingPage />,
 }]
 
 const createRoutes = (data: any) => {
-  return initialRoutes.concat(data.map(({ prompt, answer }: any, index: number) => (
+  return initialRoutes.concat(data.map(({ answer, prompt }: PromptData, index: number) => (
     {
       path: `/${index + initialRoutes.length}`,
-      element: <Page prompt={prompt} answer={answer} questionNumber={index + initialRoutes.length} />
+      element: <Page answer={answer} prompt={prompt} questionNumber={index + initialRoutes.length} />
     }
   ))).concat([{
     path: `${Data.length + 1}`,

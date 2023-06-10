@@ -5,11 +5,15 @@ import Prompt from './Prompt'
 
 
 export default function Page({ prompt, answer, questionNumber }:
-  { prompt: string, answer: string[], questionNumber: number }) {
+  { prompt: string[], answer: string, questionNumber: number }) {
   console.log(questionNumber)
   return (
     <div className={styles.pageWrapper}>
-      <Prompt question={prompt} answer={answer} questionNumber={questionNumber} />
+      <Prompt
+        question={prompt}
+        answer={answer}
+        questionNumber={questionNumber}
+      />
     </div>
   )
 }

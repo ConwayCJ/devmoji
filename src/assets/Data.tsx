@@ -1,7 +1,9 @@
 type PromptData = {
-  prompt: string
-  answer: string[]
+  prompt: any[]
+  answer: string
 }
+
+import { HourglassBottom, WbSunny } from '@mui/icons-material'
 
 /**
  * Idea:
@@ -11,11 +13,11 @@ type PromptData = {
  */
 
 const data: PromptData[] = [{
-  prompt: "What does PM stand for?",
-  answer: ["post meridiem", "before midday", "before noon"],
+  prompt: [<WbSunny />, "day"],
+  answer: "sunny day",
 }, {
-  prompt: "Who was the artist who made `The Great Wave off Kanagawa`",
-  answer: ["Hokusai", "Katsushika Hokusai", "Katsushika"]
-},]
+  prompt: ["Out", "of", <HourglassBottom />],
+  answer: "out of time"
+}]
 
 export default data

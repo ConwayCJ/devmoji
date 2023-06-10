@@ -1,0 +1,14 @@
+.guessContainer {
+  width: 100vw;
+}
+
+.guessContainer input {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+}
+
+.guessContainer span {
+  margin-right: 10px;
+  margin-left: 10px;
+}
