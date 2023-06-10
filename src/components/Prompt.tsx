@@ -36,15 +36,29 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
     setUserGuess('')
   }
 
-  console.log(answer.split(""))
+  const navigateInput = (e: BaseSyntheticEvent, eType: string) => {
+
+    console.log(e)
+
+    if (e.code == "Backspace") {
+      console.log("hit backspace")
+      e.currentTarget.previousElementSibling.focus()
+    } else if (e.code !== "Backspace") {
+      e.currentTarget.nextElementSibling.focus()
+    }
+  }
+
 
   return (
     <div className={styles.promptWrapper}>
 
-      <h1>{question.reduce((acc, curr) => {
-        acc.push(curr, "+")
-        return acc
-      }, []).slice(0, -1)}</h1>
+      <h1>
+        {question.reduce((acc, curr) => {
+          acc.push(curr, "+")
+          return acc
+        }, []).slice(0, -1)}
+      </h1>
+
       <h3>{userMadeGuess ? result : <></>}</h3>
 
       <p>Make your guess:</p>
@@ -60,7 +74,7 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
               type="text"
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
               maxLength={1}
-              onKeyUp={(e: BaseSyntheticEvent) => e.currentTarget.nextElementSibling.focus()}
+              onKeyUp={(e) => navigateInput(e, "onKeyUp")}
               tabIndex={index}
               key={index} />
           )
