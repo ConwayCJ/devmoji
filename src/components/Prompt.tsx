@@ -40,9 +40,6 @@ export default function Prompt({ prompt, answer, combineGuess }: {
   return (
     <div className={styles.promptWrapper}>
 
-      <h1>put win thing here</h1>
-
-
       <span className={styles.questionContainer}>
         {prompt.map((item, index) => <p key={index}>{item}</p>)}
       </span>
