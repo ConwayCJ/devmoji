@@ -7,14 +7,13 @@ import ReactConfetti from 'react-confetti'
 export default function Exit() {
   const { width, height } = useWindowSize()
 
-
   return (
     <div>
       <ReactConfetti
         width={width}
         height={height}
-        numberOfPieces={500}
-        initialVelocityY={20}
+        numberOfPieces={350}
+        initialVelocityY={50}
       >
 
       </ReactConfetti>

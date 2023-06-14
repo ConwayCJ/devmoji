@@ -1,7 +1,9 @@
-import React, { BaseSyntheticEvent, SyntheticEvent } from 'react'
+
 import Navigation from './Navigation'
-import { useState } from 'react'
+import { BaseSyntheticEvent, FormEvent, InputHTMLAttributes, SyntheticEvent, useState } from 'react'
+
 import styles from '../styles/Prompt.module.css'
+import { Backspace } from '@mui/icons-material'
 
 type Prompt = {
   question: any[]
@@ -10,32 +12,36 @@ type Prompt = {
 }
 
 export default function Prompt({ question, answer, questionNumber }: Prompt) {
-  console.log(answer)
-  console.log(question)
+  console.log("answer: ", answer)
+  console.log("question: ", question)
 
-  const [userGuess, setUserGuess] = useState('')
-  const [userMadeGuess, setUserMadeGuess] = useState(false)
-  const [result, setResult] = useState('')
-
+  const [userGuess, setUserGuess] = useState([])
+  const [wonGame, setWonGame] = useState(false)
 
 
 
-  function handleUserMadeGuess() {
-    setUserMadeGuess(false)
-    setResult('')
+  function checkWin() {
+
+    let userGuessStr = userGuess.join("")
+    console.log(userGuessStr)
+    userGuessStr.toLowerCase() == answer.replace(/\s/g, "").trim().toLowerCase() ? setWonGame(true) : setWonGame(false)
   }
 
-  function makeGuess(e: any) {
-    e.preventDefault()
-    setUserMadeGuess(true)
-
-    if (answer === userGuess.toLowerCase()){
-      setResult("Correct!") 
-
-    } else{
-      setResult("Wrong :(")
+  /**
+   * @description Checks if user input is a number, prevents default if true 
+   * @param e Any type of keyboard/click event
+   */
+  function preventNumberInput(e: any) {
+    let keyCode = e.keycode ? e.keycode : e.which;
+    if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
+      e.preventDefault()
     }
-    setUserGuess('')
+  }
+
+  const combineGuess = (e: any, index: number) => {
+    const updatedGuess: any = [...userGuess]
+    updatedGuess[index] = e.currentTarget.value
+    setUserGuess(updatedGuess)
   }
 
   const navigateInput = (e: BaseSyntheticEvent, eType: string) => {
@@ -43,41 +49,70 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
     console.log(e)
 
     if (e.code == "Backspace") {
-      
-      if(e.currentTarget.previousElementSibling === null){
-        console.log("already back at starting point")
-      } else{
-        console.log("hit backspace")
-        e.currentTarget.previousElementSibling.focus()
-      }  
-
+      console.log("hit backspace")
+      e.currentTarget.previousElementSibling.focus()
     } else if (e.code !== "Backspace") {
-      
-      if(e.currentTarget.nextElementSibling === null){
-        console.log("submit your guess")
-      } else {
-        e.currentTarget.nextElementSibling.focus()
-      }  
+      e.currentTarget.nextElementSibling.focus()
     }
   }
 
+  // const navigateInput = (e: any, index: number) => {
+  //   const nextElement = e.currentTarget.nextElementSibling;
+  //   const previousElement = e.currentTarget.previousElementSibling
+
+  //   if (e.key == "Backspace") {
+  //     console.log("hit backspace")
+  //     previousElement == null ? null : previousElement.focus()
+  //   } else if (index !== answer.length) {
+  //     e.target.value = e.key
+  //     nextElement !== null ? nextElement.focus() : null;
+  //   }
+  //   console.log(userGuess)
+  //   checkWin()
+  // }
+
+  const navigateInput = (e: any, currentIndex: number) => {
+    const inputLength = answer.length;
+
+    if (e.key === "Backspace") {
+      // Navigate backwards
+      if (currentIndex > 0 && e.target.value === "") {
+        const previousIndex: number = currentIndex - 1;
+        const previousInput: HTMLInputElement | null = document.querySelector(`input[tabindex="${previousIndex}"]`);
+
+        if (previousInput) {
+          previousInput.focus();
+        }
+      }
+    } else {
+      // Navigate forwards
+      const inputValue: string = e.target.value;
+
+      if (currentIndex < inputLength - 1 && inputValue && inputValue.trim().length > 0) {
+        const nextIndex = currentIndex + 1;
+        const nextInput: HTMLInputElement | null = document.querySelector(`input[tabindex="${nextIndex}"]`);
+
+        if (nextInput) {
+          nextInput.focus();
+        }
+      }
+    }
+  };
 
   return (
     <div className={styles.promptWrapper}>
 
-      <h1>
-        {question.reduce((acc, curr) => {
-          acc.push(curr, "+")
-          return acc
-        }, []).slice(0, -1)}
-      </h1>
+      <h1>{wonGame ? "u win!" : "keep trying"}</h1>
 
-      <h3>{userMadeGuess ? result : <></>}</h3>
+      <span className={styles.questionContainer}>
+        {
+          addArrayDelim("+", question).map(((word, index) => (
+            <p key={index}>{word}</p>
+          )))
+        }
+      </span>
 
-      <p>Make your guess:</p>
-
-
-      <form className={styles.guessContainer}>
+      <form className={styles.guessContainer} id="guessContainer">
         {answer.split("").map((character, index) => {
 
           if (character === " ") { return }
@@ -87,20 +122,23 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
               type="text"
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
               maxLength={1}
-              onKeyUp={(e) => navigateInput(e, "onKeyUp")}
               tabIndex={index}
+              onKeyDown={e => {
+                preventNumberInput(e)
+                combineGuess(e, index)
+              }}
+              onKeyUp={(e) => navigateInput(e, index)}
+              onChange={(e) => combineGuess(e, index)}
               key={index} />
           )
 
         })}
       </form>
-      <button onClick={(e) => makeGuess(e)}>Submit Guess</button>
-
 
       <Navigation
         questionNumber={questionNumber}
-        handleState={handleUserMadeGuess}
-      />
+
+        answer={answer} />
     </div>
   )
 }
