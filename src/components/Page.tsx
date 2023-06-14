@@ -19,13 +19,12 @@ export default function Page({ answer, prompt, questionNumber }: {
   const [userGuess, setUserGuess] = useState([])
   const [promptArr, setPromptArr]: any[] = useState([])
   const [promptWon, setPromptWon] = useState(false)
-  console.log(document.getElementById("guessContainer"))
 
   useEffect(() => {
     setPromptArr(addArrayDelim("+", prompt))
     setPromptWon(false)
     setUserGuess([])
-    const form = document.getElementById("guessContainer") as HTMLFormElement
+    const form = document.getElementById("guessContainer") as HTMLFormElement || <form></form>
     form.reset()
   }, [prompt])
 
