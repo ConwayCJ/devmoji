@@ -16,3 +16,16 @@ export const addArrayDelim = (delim: string, array: any[]) => {
   console.log(newArr.slice(0, -1))
   return newArr.slice(0, -1)
 }
+
+/**
+ * @description Checks if user input is a number, prevents default if true 
+ * @param e Any type of keyboard/click event
+ */
+export const preventNumberInput = (e: any) => {
+  let keyCode = e.keycode ? e.keycode : e.which;
+  if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
+    console.log("preventing default")
+    e.preventDefault()
+
+  }
+}

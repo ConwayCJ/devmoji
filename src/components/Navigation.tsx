@@ -9,17 +9,9 @@ import { ArrowBack, ArrowForward, HouseRounded } from '@mui/icons-material'
  */
 
 export default function Navigation({ questionNumber }: any) {
-  console.log(questionNumber)
 
   const navigateLeft = questionNumber -= 1
   const navigateRight = questionNumber += 2
-
-  // const clearInputs = () => {
-  //   const form: HTMLFormElement | any = document.querySelector("#guessContainer")
-  //   form.reset()
-  //   console.log(answer)
-  // }
-
 
   return (
     <nav className={styles.navWrapper}>

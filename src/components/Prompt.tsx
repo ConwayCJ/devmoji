@@ -1,7 +1,5 @@
-
-import { ChangeEvent, ChangeEventHandler, useMemo, useState } from 'react'
 import styles from '../styles/Prompt.module.css'
-import { PromptData } from '../main'
+import { preventNumberInput } from '../utility'
 
 /**
  * Todo: Change navigateInput function to new name
@@ -20,22 +18,22 @@ export default function Prompt({ prompt, answer, combineGuess }: {
   combineGuess: any
 }) {
 
-
-
-  /**
-   * @description Checks if user input is a number, prevents default if true 
-   * @param e Any type of keyboard/click event
-   */
-  function preventNumberInput(e: any) {
-    let keyCode = e.keycode ? e.keycode : e.which;
-    if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
-      console.log("preventing default")
-      e.preventDefault()
-
-    }
-  }
-
   // updateFocus function re-write..... navigate inputs
+  const updateInputFocus = (e: any, index: number) => {
+    preventNumberInput(e)
+
+    console.log(e.key)
+
+    const nextInput = e.currentTarget.nextElementSibling
+    const previousInput = e.currentTarget.previousElementSibling
+
+    if (e.key === "Backspace" && previousInput !== null) {
+      previousInput.focus()
+    } else if (nextInput !== null) {
+      nextInput.focus()
+    }
+
+  }
 
 
 
@@ -58,7 +56,10 @@ export default function Prompt({ prompt, answer, combineGuess }: {
             <input
               type="text"
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              onChange={(e) => combineGuess(e, index)}
+              onKeyUp={(e) => {
+                combineGuess(e, index)
+                updateInputFocus(e, index)
+              }}
               maxLength={1}
               key={index} />
           )
