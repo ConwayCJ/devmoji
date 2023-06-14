@@ -25,7 +25,7 @@ export default function Page({ answer, prompt, questionNumber }: {
     setPromptArr(addArrayDelim("+", prompt))
     setPromptWon(false)
     setUserGuess([])
-    const form: any = document.getElementById("guessContainer")
+    const form = document.getElementById("guessContainer") as HTMLFormElement
     form.reset()
   }, [prompt])
 
