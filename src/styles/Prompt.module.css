@@ -2,9 +2,20 @@
 .promptWrapper {
 }
 
+/* Question container */
+.questionContainer {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 30%; */
+}
+
+.questionContainer p {
+}
 /* Guess Container || User Inputs */
 .guessContainer {
-  width: 100vw;
 }
 
 .guessContainer input {

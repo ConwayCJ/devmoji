@@ -3,12 +3,10 @@ type PromptData = {
   answer: string
 }
 
-import { HourglassBottom, WbSunny } from '@mui/icons-material'
+import { HourglassBottom, HouseSharp, WbSunny } from '@mui/icons-material'
 
 /**
- * Idea:
- * 
- * Let answer be a list of answers, check in prompt if userGuess.includes(answer)
+ * Todo: Add credits, option for LinkedIn/GitHub/Socials links to contributor
  * 
  */
 
@@ -18,6 +16,9 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Out", "of", <HourglassBottom />],
   answer: "out of time"
+}, {
+  prompt: [<HouseSharp />, "party"],
+  answer: "house party"
 }]
 
 export default data

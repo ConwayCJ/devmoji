@@ -38,17 +38,8 @@ const createRoutes = (data: any) => {
 
 const router = createBrowserRouter(createRoutes(Data));
 
-// routes.forEach((route, index) => {
-//   data.push({
-//     prompt: `/${index + 1}`,
-//     element: <Page prompt={route.prompt} answer={route.answer} />
-//   })
-// })
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
-
     <RouterProvider router={router} />
-
   </>
 )
