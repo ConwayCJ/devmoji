@@ -2,17 +2,23 @@ import { Link } from 'react-router-dom'
 import styles from "../styles/Navigation.module.css"
 import { ArrowBack, ArrowForward, HouseRounded } from '@mui/icons-material'
 
-export default function Navigation({ questionNumber, answer }: any) {
+/**
+ * todo: Fix | any on form element
+ *       
+ *
+ */
+
+export default function Navigation({ questionNumber }: any) {
   console.log(questionNumber)
 
   const navigateLeft = questionNumber -= 1
   const navigateRight = questionNumber += 2
 
-  const clearInputs = () => {
-    const form: HTMLFormElement | any = document.querySelector("#guessContainer")
-    form.reset()
-    console.log(answer)
-  }
+  // const clearInputs = () => {
+  //   const form: HTMLFormElement | any = document.querySelector("#guessContainer")
+  //   form.reset()
+  //   console.log(answer)
+  // }
 
 
   return (
@@ -20,11 +26,11 @@ export default function Navigation({ questionNumber, answer }: any) {
       <ul>
         <li>
           {navigateLeft == 0 ?
-            <Link to={"/"} onClick={clearInputs}><HouseRounded /></Link> :
-            <Link to={`../${navigateLeft}`} onFocus={clearInputs}><ArrowBack /></Link>}
+            <Link to={"/"}><HouseRounded /></Link> :
+            <Link to={`../${navigateLeft}`}><ArrowBack /></Link>}
         </li>
         <li>
-          <Link to={`../${navigateRight}`} onFocus={clearInputs}><ArrowForward /></Link>
+          <Link to={`../${navigateRight}`}><ArrowForward /></Link>
         </li>
       </ul>
     </nav>

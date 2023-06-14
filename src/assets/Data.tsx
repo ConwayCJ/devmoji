@@ -1,9 +1,5 @@
-type PromptData = {
-  prompt: any[]
-  answer: string
-}
-
 import { HourglassBottom, HouseSharp, WbSunny } from '@mui/icons-material'
+import { PromptData } from '../main'
 
 /**
  * Todo: Add credits, option for LinkedIn/GitHub/Socials links to contributor

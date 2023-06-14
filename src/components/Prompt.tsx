@@ -1,31 +1,26 @@
 
-import Navigation from './Navigation'
-import { BaseSyntheticEvent, FormEvent, InputHTMLAttributes, SyntheticEvent, useState } from 'react'
-
+import { ChangeEvent, ChangeEventHandler, useMemo, useState } from 'react'
 import styles from '../styles/Prompt.module.css'
-import { Backspace } from '@mui/icons-material'
+import { PromptData } from '../main'
+
+/**
+ * Todo: Change navigateInput function to new name
+ *       Change wonGame wording to wonPrompt or correctAnswer or something
+ * 
+ */
 
 type Prompt = {
-  question: any[]
+  prompt: Array<string | React.ReactElement<JSX.Element> | null> // React.ReactNode[]
   answer: string
-  questionNumber: number
 }
 
-export default function Prompt({ question, answer, questionNumber }: Prompt) {
-  console.log("answer: ", answer)
-  console.log("question: ", question)
-
-  const [userGuess, setUserGuess] = useState([])
-  const [wonGame, setWonGame] = useState(false)
-
+export default function Prompt({ prompt, answer, combineGuess }: {
+  prompt: Array<string | React.ReactElement<JSX.Element> | null> // React.ReactNode[]
+  answer: string
+  combineGuess: any
+}) {
 
 
-  function checkWin() {
-
-    let userGuessStr = userGuess.join("")
-    console.log(userGuessStr)
-    userGuessStr.toLowerCase() == answer.replace(/\s/g, "").trim().toLowerCase() ? setWonGame(true) : setWonGame(false)
-  }
 
   /**
    * @description Checks if user input is a number, prevents default if true 
@@ -34,96 +29,24 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
   function preventNumberInput(e: any) {
     let keyCode = e.keycode ? e.keycode : e.which;
     if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
+      console.log("preventing default")
       e.preventDefault()
+
     }
   }
 
-  const combineGuess = (e: any, index: number) => {
-    const updatedGuess: any = [...userGuess]
-    updatedGuess[index] = e.currentTarget.value
-    setUserGuess(updatedGuess)
-  }
+  // updateFocus function re-write..... navigate inputs
 
-  /**
-   * @description Takes a string and an array, 
-   * inserts string inbetween each item in array
-   * 
-   * @param delim Symbol to concatenate between each item in array
-   * @param array List of items: any type
-   * @returns new array with symbol inbetween each item of original array
-   */
-  const addArrayDelim = (delim: string, array: any[]) => {
-    const newArr: any[] = []
-    const pushWithDelim = (el: any) => {
-      newArr.push(el)
-      newArr.push(delim)
-    }
-    array.forEach(pushWithDelim)
-    console.log(newArr.slice(0, -1))
-    return newArr.slice(0, -1)
-  }
 
-  {
-    /* {question.reduce((acc, curr) => {
-          acc.push(curr, "+")
-          return acc
-        }, []).slice(0, -1)} */
-  }
-
-  // const navigateInput = (e: any, index: number) => {
-  //   const nextElement = e.currentTarget.nextElementSibling;
-  //   const previousElement = e.currentTarget.previousElementSibling
-
-  //   if (e.key == "Backspace") {
-  //     console.log("hit backspace")
-  //     previousElement == null ? null : previousElement.focus()
-  //   } else if (index !== answer.length) {
-  //     e.target.value = e.key
-  //     nextElement !== null ? nextElement.focus() : null;
-  //   }
-  //   console.log(userGuess)
-  //   checkWin()
-  // }
-
-  const navigateInput = (e: any, currentIndex: number) => {
-    const inputLength = answer.length;
-
-    if (e.key === "Backspace") {
-      // Navigate backwards
-      if (currentIndex > 0 && e.target.value === "") {
-        const previousIndex: number = currentIndex - 1;
-        const previousInput: HTMLInputElement | null = document.querySelector(`input[tabindex="${previousIndex}"]`);
-
-        if (previousInput) {
-          previousInput.focus();
-        }
-      }
-    } else {
-      // Navigate forwards
-      const inputValue: string = e.target.value;
-
-      if (currentIndex < inputLength - 1 && inputValue && inputValue.trim().length > 0) {
-        const nextIndex = currentIndex + 1;
-        const nextInput: HTMLInputElement | null = document.querySelector(`input[tabindex="${nextIndex}"]`);
-
-        if (nextInput) {
-          nextInput.focus();
-        }
-      }
-    }
-  };
 
   return (
     <div className={styles.promptWrapper}>
 
-      <h1>{wonGame ? "u win!" : "keep trying"}</h1>
+      <h1>put win thing here</h1>
+
 
       <span className={styles.questionContainer}>
-        {
-          addArrayDelim("+", question).map(((word, index) => (
-            <p key={index}>{word}</p>
-          )))
-        }
+        {prompt.map((item, index) => <p key={index}>{item}</p>)}
       </span>
 
       <form className={styles.guessContainer} id="guessContainer">
@@ -135,24 +58,12 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
             <input
               type="text"
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              maxLength={1}
-              tabIndex={index}
-              onKeyDown={e => {
-                preventNumberInput(e)
-                combineGuess(e, index)
-              }}
-              onKeyUp={(e) => navigateInput(e, index)}
               onChange={(e) => combineGuess(e, index)}
+              maxLength={1}
               key={index} />
           )
-
         })}
       </form>
-
-      <Navigation
-        questionNumber={questionNumber}
-
-        answer={answer} />
     </div>
   )
 }

@@ -11,9 +11,9 @@ import Data from './assets/Data';
 import Error from './components/Error'
 import Exit from './components/Exit';
 
-interface PromptData {
+export interface PromptData {
   answer: string
-  prompt: any[]
+  prompt: React.ReactElement[] | any[]
 }
 
 const initialRoutes = [{
@@ -21,19 +21,27 @@ const initialRoutes = [{
   element: <LandingPage />,
 }]
 
+/**
+ * 
+ * @param data 
+ * @returns 
+ */
 const createRoutes = (data: any) => {
+  // These routes have to come last
+  const terminalRoutes = [{
+    path: `${data.length + 1}`,
+    element: <Exit />
+  }, {
+    path: '*',
+    element: <Error />
+  }]
+
   return initialRoutes.concat(data.map(({ answer, prompt }: PromptData, index: number) => (
     {
       path: `/${index + initialRoutes.length}`,
       element: <Page answer={answer} prompt={prompt} questionNumber={index + initialRoutes.length} />
     }
-  ))).concat([{
-    path: `${Data.length + 1}`,
-    element: <Exit />
-  }, {
-    path: '*',
-    element: <Error />
-  }])
+  ))).concat(terminalRoutes)
 }
 
 const router = createBrowserRouter(createRoutes(Data));
