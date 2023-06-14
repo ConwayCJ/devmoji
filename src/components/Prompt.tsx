@@ -29,10 +29,12 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
     e.preventDefault()
     setUserMadeGuess(true)
 
-    answer.includes(userGuess.toLowerCase()) ?
-      setResult("Correct!") :
-      setResult("Wrong :(")
+    if (answer === userGuess.toLowerCase()){
+      setResult("Correct!") 
 
+    } else{
+      setResult("Wrong :(")
+    }
     setUserGuess('')
   }
 
@@ -41,10 +43,21 @@ export default function Prompt({ question, answer, questionNumber }: Prompt) {
     console.log(e)
 
     if (e.code == "Backspace") {
-      console.log("hit backspace")
-      e.currentTarget.previousElementSibling.focus()
+      
+      if(e.currentTarget.previousElementSibling === null){
+        console.log("already back at starting point")
+      } else{
+        console.log("hit backspace")
+        e.currentTarget.previousElementSibling.focus()
+      }  
+
     } else if (e.code !== "Backspace") {
-      e.currentTarget.nextElementSibling.focus()
+      
+      if(e.currentTarget.nextElementSibling === null){
+        console.log("submit your guess")
+      } else {
+        e.currentTarget.nextElementSibling.focus()
+      }  
     }
   }
 
