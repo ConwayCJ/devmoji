@@ -25,7 +25,7 @@ export default function Page({ answer, prompt, questionNumber }: {
     setPromptArr(addArrayDelim("+", prompt))
     setPromptWon(false)
     setUserGuess([])
-    const form = document.getElementById("guessContainer")
+    const form: any = document.getElementById("guessContainer")
     form.reset()
   }, [prompt])
 
@@ -43,11 +43,9 @@ export default function Page({ answer, prompt, questionNumber }: {
   }
 
   function checkWin() {
-
     let userInput = userGuess.join("")
     console.log("checking win: ", userInput, "+", answer.replace(/\s/g, "").trim().toLowerCase())
     userInput.toLowerCase() == answer.replace(/\s/g, "").trim().toLowerCase() ? setPromptWon(true) : setPromptWon(false)
-
   }
 
 
