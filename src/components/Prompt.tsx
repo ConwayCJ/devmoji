@@ -1,5 +1,6 @@
 import styles from '../styles/Prompt.module.css'
 import { preventNumberInput } from '../utility'
+import { KeyboardEvent } from 'react'
 
 /**
  * Todo: Change navigateInput function to new name
@@ -8,14 +9,14 @@ import { preventNumberInput } from '../utility'
  */
 
 type Prompt = {
-  prompt: Array<string | React.ReactElement<JSX.Element> | null> // React.ReactNode[]
+  prompt: React.ReactNode[] //Array<string | React.ReactElement<JSX.Element> | null>
   answer: string
 }
 
 export default function Prompt({ prompt, answer, combineGuess }: {
-  prompt: Array<string | React.ReactElement<JSX.Element> | null> // React.ReactNode[]
+  prompt: React.ReactNode[]
   answer: string
-  combineGuess: any
+  combineGuess: (e: KeyboardEvent<HTMLInputElement>, index: number) => void
 }) {
 
   // updateFocus function re-write..... navigate inputs

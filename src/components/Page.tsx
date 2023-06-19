@@ -2,7 +2,8 @@ import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import Prompt from './Prompt'
 import { addArrayDelim } from '../utility'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect, KeyboardEvent, useRef } from 'react'
+
 /**
  * Todo: Import type for prompt/answer/questionNumber, consolidate
  */
@@ -10,32 +11,36 @@ import { useState, useMemo, useEffect } from 'react'
 
 export default function Page({ answer, prompt, questionNumber }: {
   answer: string
-  prompt: React.ReactElement[] | any[]
+  prompt: React.ReactNode[]
   questionNumber: number
 }) {
 
   //State Management
-
-  const [userGuess, setUserGuess] = useState([])
-  const [promptArr, setPromptArr]: any[] = useState([])
+  const [userGuess, setUserGuess] = useState<string[]>([])
+  const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)
+  const formRef = useRef(<form></form>)
 
+  //reset state after new prompt renders
   useEffect(() => {
     setPromptArr(addArrayDelim("+", prompt))
     setPromptWon(false)
     setUserGuess([])
+
     const form = document.getElementById("guessContainer") as HTMLFormElement || <form></form>
     form.reset()
   }, [prompt])
 
-  useMemo(() => {
+  //checking for a win, every time there's a new input for the prompt guess
+  useEffect(() => {
     checkWin()
   }, [userGuess])
 
+
   //Game State Logic
 
-  const combineGuess = (e: any, index: any) => {
-    let updatedGuess: any = [...userGuess]
+  const combineGuess = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+    let updatedGuess: string[] = [...userGuess]
     updatedGuess[index] = e.currentTarget.value
     console.log("combining guess: ", updatedGuess)
     setUserGuess(updatedGuess)
@@ -46,8 +51,6 @@ export default function Page({ answer, prompt, questionNumber }: {
     console.log("checking win: ", userInput, "+", answer.replace(/\s/g, "").trim().toLowerCase())
     userInput.toLowerCase() == answer.replace(/\s/g, "").trim().toLowerCase() ? setPromptWon(true) : setPromptWon(false)
   }
-
-
 
   return (
     <div className={styles.pageWrapper}>
@@ -65,3 +68,4 @@ export default function Page({ answer, prompt, questionNumber }: {
     </div>
   )
 }
+

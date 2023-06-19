@@ -6,9 +6,9 @@
  * @param array List of items: any type
  * @returns new array with symbol inbetween each item of original array
  */
-export const addArrayDelim = (delim: string, array: any[]) => {
-  const newArr: any[] = []
-  const pushWithDelim = (el: any) => {
+export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
+  const newArr: typeof array = []
+  const pushWithDelim = (el: React.ReactNode) => {
     newArr.push(el)
     newArr.push(delim)
   }
@@ -29,3 +29,4 @@ export const preventNumberInput = (e: any) => {
 
   }
 }
+
