@@ -1,5 +1,4 @@
-import { Mood } from '@mui/icons-material'
-import { HourglassBottom, HouseSharp, WbSunny, MonitorHeart } from '@mui/icons-material'
+import { HourglassBottom, HouseSharp, WbSunny, MonitorHeart, CoffeeIcon } from '@mui/icons-material'
 import { PromptData } from '../main'
 
 /**
@@ -24,6 +23,12 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Queen", "of", <MonitorHeart />, "'s"],
   answer: 'queen of hearts'
-}]
+},
+{
+  prompt: [ <CoffeeIcon />, "is", "life"],
+  answer: 'coffee is life'
+}
+
+]
 
 export default data
