@@ -95,7 +95,7 @@ export default function Page({ answer, prompt, questionNumber }: {
               type="text"
               // value={userGuess[index]}
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              onKeyDown={(e) => {
+              onKeyDown={(e: any) => {
                 console.log(typeof e)
                 if (e.key == "Backspace") {
                   e.target.value = ""
