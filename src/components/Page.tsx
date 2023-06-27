@@ -1,7 +1,7 @@
 import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
-import React, { useState, useEffect, useRef, ChangeEvent, ReactElement, MutableRefObject, KeyboardEventHandler, } from 'react'
+import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
 
 export default function Page({ answer, prompt, questionNumber }: {
   answer: string
@@ -20,8 +20,8 @@ export default function Page({ answer, prompt, questionNumber }: {
      * 
      * but aren't shown in the input field
      * forcing every input to an empty string on prompt update works
+     * formRef.current.reset()
      * 
-     *  formRef.current.reset()
     */
 
     Array.from((formRef.current as HTMLFormElement).children).forEach((child) => {

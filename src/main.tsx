@@ -14,6 +14,10 @@ import Exit from './components/Exit';
 export interface PromptData {
   answer: string
   prompt: React.ReactElement[] | any[]
+  socials?: {
+    LIurl?: string,
+    GHurl?: string,
+  }
 }
 
 const initialRoutes = [{

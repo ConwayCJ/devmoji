@@ -7,9 +7,14 @@ import { PromptData } from '../main'
  * 
  */
 
+
 const data: PromptData[] = [{
   prompt: [<WbSunny />, "day"],
   answer: "sunny day",
+  socials: {
+    LIurl: 'https://www.linkedin.com/in/conwaycj/',
+    GHurl: 'https://github.com/ConwayCJ',
+  }
 }, {
   prompt: ["Out", "of", <HourglassBottom />],
   answer: "out of time"
