@@ -21,7 +21,8 @@ export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
  * @description Checks if user input is a number, prevents default if true 
  * @param e Any type of keyboard/click event
  */
-export const preventNumberInput = (e: any) => {
+export const handleKeyDown = (e: any) => {
+
   let keyCode = e.keycode ? e.keycode : e.which;
   if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
     console.log("preventing default")
@@ -31,8 +32,7 @@ export const preventNumberInput = (e: any) => {
   if (e.key == "Backspace") {
     e.target.value = ""
     e.target.previousSibling.focus()
+    e.preventDefault()
   }
-
-
 }
 

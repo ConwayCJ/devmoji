@@ -1,14 +1,7 @@
 import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
-import { addArrayDelim, preventNumberInput } from '../utility'
-import React, { useState, useEffect, useRef, ChangeEvent, ReactElement, MutableRefObject, } from 'react'
-
-/**
- * Todo: Fix types: const formRef<any>
- *                  onKeyDown<any> ??
- *   
- */
-
+import { addArrayDelim, handleKeyDown } from '../utility'
+import React, { useState, useEffect, useRef, ChangeEvent, ReactElement, MutableRefObject, KeyboardEventHandler, } from 'react'
 
 export default function Page({ answer, prompt, questionNumber }: {
   answer: string
@@ -16,8 +9,6 @@ export default function Page({ answer, prompt, questionNumber }: {
   questionNumber: number
 }) {
 
-  //State Management
-  const [userGuess, setUserGuess] = useState<string[]>([])
   const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
@@ -33,13 +24,11 @@ export default function Page({ answer, prompt, questionNumber }: {
      *  formRef.current.reset()
     */
 
-
-
-    Array.from((formRef.current as unknown as HTMLFormElement).children).forEach((child) => {
+    Array.from((formRef.current as HTMLFormElement).children).forEach((child) => {
       (child as HTMLInputElement).value = "";
     })
 
-    const prevRef: HTMLFormElement = (formRef as unknown as MutableRefObject<HTMLFormElement>).current;
+    const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
 
     const firstInput = prevRef?.children[0] as HTMLInputElement
 
@@ -48,7 +37,7 @@ export default function Page({ answer, prompt, questionNumber }: {
     //reset state
     setPromptArr(addArrayDelim("+", prompt))
     setPromptWon(false)
-    setUserGuess([])
+
   }, [prompt])
 
 
@@ -62,8 +51,6 @@ export default function Page({ answer, prompt, questionNumber }: {
       setPromptWon(true)
     }
   }
-
-  //Prompt logic
 
   return (
     <div className={styles.pageWrapper}>
@@ -80,17 +67,11 @@ export default function Page({ answer, prompt, questionNumber }: {
 
           const handleChange = (e: React.BaseSyntheticEvent) => {
 
-            console.log(e)
-
             const nextInput = e.currentTarget.nextSibling
-            const previousInput = e.currentTarget.previousSibling
             const keyType = (e.nativeEvent as InputEvent).inputType
 
-
-            const prevRef: HTMLFormElement = (formRef as unknown as MutableRefObject<HTMLFormElement>).current;
-
-            const inputs = [...prevRef.children] as unknown as HTMLInputElement[]
-            console.log(inputs)
+            const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
+            const inputs = [...prevRef.children] as HTMLInputElement[]
             const guess = inputs.map((input) => input.value)
 
             if (nextInput !== null && keyType !== "deleteContentBackward") {
@@ -107,7 +88,9 @@ export default function Page({ answer, prompt, questionNumber }: {
               type="text"
               // value={userGuess[index]}
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              onKeyDown={preventNumberInput}
+              onKeyDown={(e) => {
+                handleKeyDown(e)
+              }}
               onChange={handleChange}
               maxLength={1}
               key={index} />
