@@ -23,8 +23,7 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Queen", "of", <MonitorHeart />, "'s"],
   answer: 'queen of hearts'
-},
-{
+},{
   prompt: [ <Coffee />, "is", "life"],
   answer: 'coffee is life'
 }
