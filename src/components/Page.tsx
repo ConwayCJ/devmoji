@@ -1,7 +1,7 @@
 import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import { addArrayDelim, preventNumberInput } from '../utility'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, ChangeEvent } from 'react'
 
 /**
  * Todo: Fix types: const formRef<any>
@@ -20,7 +20,7 @@ export default function Page({ answer, prompt, questionNumber }: {
   const [userGuess, setUserGuess] = useState<string[]>([])
   const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)
-  const formRef = useRef<any>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     /**question: --------- 
@@ -33,11 +33,15 @@ export default function Page({ answer, prompt, questionNumber }: {
      *  formRef.current.reset()
     */
     console.log(formRef)
-    Array.from(formRef.current.children).forEach((child: any) => child.value = "")
+    Array.from(formRef.current?.children || []).forEach((child) => {
+      if (child instanceof HTMLInputElement) {
+        child.value = ""
+      }
+    })
 
     //set focus to first input
-    const firstInput = formRef.current[0]
-    firstInput.focus()
+    const firstInput = formRef.current?.querySelector("input") as HTMLInputElement | null
+    firstInput?.focus()
 
     //reset state
     setPromptArr(addArrayDelim("+", prompt))
@@ -72,14 +76,14 @@ export default function Page({ answer, prompt, questionNumber }: {
 
         {answer.split("").map((character, index) => {
 
-          const handleChange = (e: any, index: number) => {
+          const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
 
-            const nextInput = e.target.nextSibling
-            const previousInput = e.target.previousSibling
-            const keyType = e.nativeEvent.inputType
+            const nextInput = e.target.nextSibling as HTMLInputElement
+            const previousInput = e.target.previousSibling as HTMLInputElement
+            const keyType = (e.nativeEvent as InputEvent).inputType
 
-            const inputs = [...formRef.current.children]
-            const guess = inputs.map((input: HTMLInputElement) => input.value)
+            const inputs = Array.from(formRef.current?.children || []) as HTMLInputElement[]
+            const guess = inputs.map((input) => input.value)
 
             if (nextInput !== null && keyType !== "deleteContentBackward") {
               nextInput.focus()
@@ -95,11 +99,11 @@ export default function Page({ answer, prompt, questionNumber }: {
               type="text"
               // value={userGuess[index]}
               style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              onKeyDown={(e: any) => {
-                console.log(typeof e)
-                if (e.key == "Backspace") {
-                  e.target.value = ""
-                  e.target.previousSibling.focus()
+              onKeyDown={(e) => {
+                if (e.key === "Backspace") {
+                  e.currentTarget.value = ""
+                  const previousInput = e.currentTarget.previousElementSibling as HTMLInputElement
+                  previousInput.focus()
                 }
                 preventNumberInput(e)
               }}
