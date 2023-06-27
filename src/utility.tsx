@@ -28,6 +28,11 @@ export const preventNumberInput = (e: any) => {
     e.preventDefault()
   }
 
+  if (e.key == "Backspace") {
+    e.target.value = ""
+    e.target.previousSibling.focus()
+  }
+
 
 }
 
