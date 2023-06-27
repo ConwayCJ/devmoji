@@ -26,6 +26,30 @@ We welcome contributions from the community! To contribute to this project, plea
 
 Please ensure that your code follows the project's coding style guidelines and is well-documented. Our team will review your pull request and provide feedback as necessary.
 
+See code style guidelines [here](/style_guidelines.md)
+
+## Data.tsx contributions
+
+### ***prompt*** key:
+  - Your prompt must be in array. Each 'word' or 'emoji' of the prompt is a separate item.
+
+### ***Answer*** key:
+  - Your answer must be a string. Separate the word by spaces. Use lowercase lettering.
+
+### ***socials*** key:
+  - ***OPTIONAL*** 
+  - Follow the following format. LIUrl must be a string. GHurl must be a string.
+
+  Example:
+```javascript
+socials: {
+    LIurl: 'https://www.linkedin.com/in/conwaycj/',
+    GHurl: 'https://github.com/ConwayCJ',
+  }
+```
+
+![image](https://github.com/ConwayCJ/opensourceproject/assets/94498167/d3653e99-9b3c-489e-8b05-1b8593042490)
+
 ## Code Stack
 The project is built using the following technologies and frameworks:
 
