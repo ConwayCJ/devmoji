@@ -30,15 +30,15 @@ See code style guidelines [here](/style_guidelines.md)
 
 ## Data.tsx contributions
 
-### ***prompt*** key:
+   ***prompt*** key:
   - Your prompt must be in array. Each 'word' or 'emoji' of the prompt is a separate item.
 
-### ***Answer*** key:
+   ***Answer*** key:
   - Your answer must be a string. Separate the word by spaces. Use lowercase lettering.
 
-### ***socials*** key:
-  - ***OPTIONAL*** 
-  - Follow the following format. LIUrl must be a string. GHurl must be a string.
+   ***socials*** key:
+  - This is OPTIONAL. If you do not want links to your socials on the application, do not add a socials key.
+  - Follow the following format. LIurl must be a string. GHurl must be a string.
 
   Example:
 ```javascript
@@ -48,7 +48,7 @@ socials: {
   }
 ```
 
-![image](https://github.com/ConwayCJ/opensourceproject/assets/94498167/d3653e99-9b3c-489e-8b05-1b8593042490)
+![image](https://github.com/ConwayCJ/opensourceproject/assets/94498167/c1cc2570-ea75-44fa-a7d8-11dcdde0c35b)
 
 ## Code Stack
 The project is built using the following technologies and frameworks:
