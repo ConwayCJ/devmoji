@@ -1,7 +1,7 @@
 import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import { addArrayDelim, preventNumberInput } from '../utility'
-import React, { useState, useEffect, useRef, ChangeEvent } from 'react'
+import React, { useState, useEffect, useRef, ChangeEvent, ReactElement, MutableRefObject, } from 'react'
 
 /**
  * Todo: Fix types: const formRef<any>
@@ -20,7 +20,7 @@ export default function Page({ answer, prompt, questionNumber }: {
   const [userGuess, setUserGuess] = useState<string[]>([])
   const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)
-  const formRef = useRef<any>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     /**question: --------- 
@@ -32,11 +32,18 @@ export default function Page({ answer, prompt, questionNumber }: {
      * 
      *  formRef.current.reset()
     */
-    Array.from(formRef.current.children).forEach((child: any) => child.value = "")
 
-    //set focus to first input
-    const firstInput = formRef.current[0]
-    firstInput.focus()
+
+
+    Array.from((formRef.current as unknown as HTMLFormElement).children).forEach((child) => {
+      (child as HTMLInputElement).value = "";
+    })
+
+    const prevRef: HTMLFormElement = (formRef as unknown as MutableRefObject<HTMLFormElement>).current;
+
+    const firstInput = prevRef?.children[0] as HTMLInputElement
+
+    firstInput.focus();
 
     //reset state
     setPromptArr(addArrayDelim("+", prompt))
@@ -79,8 +86,12 @@ export default function Page({ answer, prompt, questionNumber }: {
             const previousInput = e.currentTarget.previousSibling
             const keyType = (e.nativeEvent as InputEvent).inputType
 
-            const inputs = [...formRef.current.children]
-            const guess = inputs.map((input: HTMLInputElement) => input.value)
+
+            const prevRef: HTMLFormElement = (formRef as unknown as MutableRefObject<HTMLFormElement>).current;
+
+            const inputs = [...prevRef.children] as unknown as HTMLInputElement[]
+            console.log(inputs)
+            const guess = inputs.map((input) => input.value)
 
             if (nextInput !== null && keyType !== "deleteContentBackward") {
               nextInput.focus()
