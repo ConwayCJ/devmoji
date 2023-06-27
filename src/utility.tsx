@@ -26,7 +26,8 @@ export const preventNumberInput = (e: any) => {
   if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
     console.log("preventing default")
     e.preventDefault()
-
   }
+
+
 }
 
