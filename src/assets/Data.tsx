@@ -1,4 +1,4 @@
-import { HourglassBottom, HouseSharp, WbSunny, MonitorHeart, Coffee } from '@mui/icons-material'
+import { HourglassBottom, HouseSharp, WbSunny, MonitorHeart, Coffee, AirplanemodeActive } from '@mui/icons-material'
 import { PromptData } from '../main'
 
 /**
@@ -26,6 +26,13 @@ const data: PromptData[] = [{
 },{
   prompt: [ <Coffee />, "is", "life"],
   answer: 'coffee is life'
+},{
+  prompt: [ "snakes", "on", "a", <AirplanemodeActive />],
+  answer: "snakes on a plane",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/nereidarondon/",
+    GHurl: "https://github.com/NereidaRondon"
+  }
 }
 
 ]
