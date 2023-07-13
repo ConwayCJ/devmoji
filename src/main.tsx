@@ -15,8 +15,8 @@ export interface PromptData {
   answer: string
   prompt: React.ReactElement[] | any[]
   socials?: {
-    LIurl?: string,
-    GHurl?: string,
+    LIurl?: string | undefined
+    GHurl?: string | undefined
   }
 }
 
@@ -40,10 +40,10 @@ const createRoutes = (data: any) => {
     element: <Error />
   }]
 
-  return initialRoutes.concat(data.map(({ answer, prompt }: PromptData, index: number) => (
+  return initialRoutes.concat(data.map(({ answer, prompt, socials }: PromptData, index: number) => (
     {
       path: `/${index + initialRoutes.length}`,
-      element: <Page answer={answer} prompt={prompt} questionNumber={index + initialRoutes.length} />
+      element: <Page socials={socials} answer={answer} prompt={prompt} questionNumber={index + initialRoutes.length} />
     }
   ))).concat(terminalRoutes)
 }

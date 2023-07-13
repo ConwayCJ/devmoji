@@ -2,12 +2,13 @@ import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
 import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
+import { PromptData } from '../main'
 
-export default function Page({ answer, prompt, questionNumber }: {
-  answer: string
-  prompt: React.ReactNode[]
+interface PageData extends PromptData {
   questionNumber: number
-}) {
+}
+
+export default function Page({ answer, prompt, socials, questionNumber }: PageData) {
 
   const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)

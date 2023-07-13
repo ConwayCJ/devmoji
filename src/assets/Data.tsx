@@ -23,11 +23,11 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Queen", "of", <MonitorHeart />, "'s"],
   answer: 'queen of hearts'
-},{
-  prompt: [ <Coffee />, "is", "life"],
+}, {
+  prompt: [<Coffee />, "is", "life"],
   answer: 'coffee is life'
-},{
-  prompt: [ "snakes", "on", "a", <AirplanemodeActive />],
+}, {
+  prompt: ["snakes", "on", "a", <AirplanemodeActive />],
   answer: "snakes on a plane",
   socials: {
     LIurl: "https://www.linkedin.com/in/nereidarondon/",
