@@ -25,11 +25,6 @@ const initialRoutes = [{
   element: <LandingPage />,
 }]
 
-/**
- * 
- * @param data 
- * @returns 
- */
 const createRoutes = (data: any) => {
   // These routes have to come last
   const terminalRoutes = [{

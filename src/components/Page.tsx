@@ -3,6 +3,7 @@ import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
 import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
 import { PromptData } from '../main'
+import Socials from './Socials'
 
 interface PageData extends PromptData {
   questionNumber: number
@@ -102,6 +103,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PageDa
       <Navigation
         questionNumber={questionNumber}
         answer={answer} />
+      {socials ? <Socials socials={socials} /> : null}
     </div>
   )
 }
