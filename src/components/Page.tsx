@@ -55,21 +55,18 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
   }
 
   return (
-    <div className={`container w-full h-screen flex flex-col items-center justify-between`}>
-      <div></div>
-      <div></div>
-      {/* <h1>{promptWon ? "u win" : "keep trying"}</h1> */}
+    <div className={`w-full h-screen flex flex-col items-center justify-end`}>
 
-
-      <div className='flex flex-col items-center'>
+      <div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2">
         <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
           {promptArr.map((item, index) => <p
             key={index}
             className={item === "+" ? 'text-2xl' : 'text-4xl'}
-          >{item}</p>)}
-        </span>
+          >{item}</p>)
+          }
+        </span >
 
-        <form ref={formRef} className="w-full h-8" id="guessContainer">
+        <form ref={formRef} className="">
 
           {answer.split("").map((character, index) => {
 
@@ -115,15 +112,15 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
         <Navigation
           questionNumber={questionNumber}
           answer={answer} />
-      </div>
+      </div >
 
 
       {/* Only show socials if contribute */}
       <div>
-        {socials ? <Socials socials={socials} /> : null}
-      </div>
+        {socials ? <Socials socials={socials} /> : <div></div>}
+      </div >
 
-    </div>
+    </div >
   )
 }
 

@@ -9,7 +9,7 @@ export default function Exit() {
   const { width, height } = useWindowSize()
 
   return (
-    <div className='container flex flex-col w-full h-screen justify-around items-center'>
+    <div className='h-screen w-full flex flex-col items-center justify-end'>
       <ReactConfetti
         width={width}
         height={height}
@@ -17,11 +17,16 @@ export default function Exit() {
         initialVelocityY={50}
       >
       </ReactConfetti>
-      <div></div>
 
-      <p>You're out of questions! Click to return to the main Page</p>
-      <Link to="/">Go to Home</Link>
+      <div className="flex flex-col w-3/4 text-center items-center absolute top-1/2 -translate-y-1/2">
+        <p>You're out of questions!</p>
+        <br></br>
+        <Link to="/">Go to Home</Link>
+      </div>
+
+
       <Footer />
+
     </div>
   )
 }
