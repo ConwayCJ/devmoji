@@ -55,7 +55,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
   }
 
   return (
-    <div className={`w-full h-screen flex flex-col items-center justify-end`}>
+    <div className={`w-full h-screen flex flex-col items-center justify-end ${promptWon ? 'bg-gradient-to-r from-green-300 via-green-500 to-green-800' : 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'}`}>
 
       <div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2">
         <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
@@ -72,7 +72,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
 
             const handleChange = (e: React.BaseSyntheticEvent) => {
 
-              const nextInput = e.currentTarget.nextSibling
+              const nextInput = e.currentTarget.nextElementSibling
               const keyType = (e.nativeEvent as InputEvent).inputType
 
               const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
