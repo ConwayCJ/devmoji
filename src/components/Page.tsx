@@ -1,15 +1,15 @@
-import styles from '../styles/Page.module.css'
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
 import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
 import { PromptData } from '../main'
 import Socials from './Socials'
 
-interface PageData extends PromptData {
+
+interface PageProps extends PromptData {
   questionNumber: number
 }
 
-export default function Page({ answer, prompt, socials, questionNumber }: PageData) {
+export default function Page({ answer, prompt, socials, questionNumber }: PageProps) {
 
   const [promptArr, setPromptArr] = useState<typeof prompt>([])
   const [promptWon, setPromptWon] = useState(false)
@@ -55,55 +55,74 @@ export default function Page({ answer, prompt, socials, questionNumber }: PageDa
   }
 
   return (
-    <div className={styles.pageWrapper}>
+    <div className={`container w-full h-screen flex flex-col items-center justify-between`}>
+      <div></div>
+      <div></div>
+      {/* <h1>{promptWon ? "u win" : "keep trying"}</h1> */}
 
-      <h1>{promptWon ? "u win" : "keep trying"}</h1>
 
-      <span className={styles.questionContainer}>
-        {promptArr.map((item, index) => <p key={index}>{item}</p>)}
-      </span>
+      <div className='flex flex-col items-center'>
+        <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
+          {promptArr.map((item, index) => <p
+            key={index}
+            className={item === "+" ? 'text-2xl' : 'text-4xl'}
+          >{item}</p>)}
+        </span>
 
-      <form ref={formRef} className={styles.guessContainer} id="guessContainer">
+        <form ref={formRef} className="w-full h-8" id="guessContainer">
 
-        {answer.split("").map((character, index) => {
+          {answer.split("").map((character, index) => {
 
-          const handleChange = (e: React.BaseSyntheticEvent) => {
+            const handleChange = (e: React.BaseSyntheticEvent) => {
 
-            const nextInput = e.currentTarget.nextSibling
-            const keyType = (e.nativeEvent as InputEvent).inputType
+              const nextInput = e.currentTarget.nextSibling
+              const keyType = (e.nativeEvent as InputEvent).inputType
 
-            const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
-            const inputs = [...prevRef.children] as HTMLInputElement[]
-            const guess = inputs.map((input) => input.value)
+              const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
+              const inputs = [...prevRef.children] as HTMLInputElement[]
+              const guess = inputs.map((input) => input.value)
 
-            if (nextInput !== null && keyType !== "deleteContentBackward") {
-              nextInput.focus()
+              if (nextInput !== null && keyType !== "deleteContentBackward") {
+                nextInput.focus()
+              }
+
+              checkWin(guess)
             }
 
-            checkWin(guess)
-          }
+            if (character === " ") { return }
 
-          if (character === " ") { return }
+            return (
+              <input
+                type="text"
+                className=' border border-blue-500 mr-0.5'
+                style={{
+                  marginLeft: answer[index - 1] === ' ' ? '20px' : "0px",
+                  width: "2.2em",
+                  height: "2.2em",
+                  textAlign: "center",
+                }}
+                onKeyDown={(e) => {
+                  handleKeyDown(e)
+                }}
+                onChange={handleChange}
+                maxLength={1}
+                key={index} />
+            )
+          })}
+        </form>
 
-          return (
-            <input
-              type="text"
-              // value={userGuess[index]}
-              style={{ marginLeft: answer[index - 1] === ' ' ? '10px' : "0px" }}
-              onKeyDown={(e) => {
-                handleKeyDown(e)
-              }}
-              onChange={handleChange}
-              maxLength={1}
-              key={index} />
-          )
-        })}
-      </form>
 
-      <Navigation
-        questionNumber={questionNumber}
-        answer={answer} />
-      {socials ? <Socials socials={socials} /> : null}
+        <Navigation
+          questionNumber={questionNumber}
+          answer={answer} />
+      </div>
+
+
+      {/* Only show socials if contribute */}
+      <div>
+        {socials ? <Socials socials={socials} /> : null}
+      </div>
+
     </div>
   )
 }
