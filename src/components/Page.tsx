@@ -1,119 +1,128 @@
+// @ts-nocheck
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
-import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
+import React, { useState, useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction } from 'react'
 import { PromptData } from '../main'
 import Socials from './Socials'
 
+// memoize values like guessWon
 
 interface PageProps extends PromptData {
   questionNumber: number
 }
 
 export default function Page({ answer, prompt, socials, questionNumber }: PageProps) {
-
-  const [promptArr, setPromptArr] = useState<typeof prompt>([])
-  const [promptWon, setPromptWon] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
-  useEffect(() => {
-    /**question: --------- 
-     * 
-     * why can I not reset the form this way? inputs persist,
-     * 
-     * but aren't shown in the input field
-     * forcing every input to an empty string on prompt update works
-     * formRef.current.reset()
-     * 
-    */
+  const initialState = {
+    promptArr: addArrayDelim("+", prompt), //this is line 14
+    userGuess: Array.from(answer.split(" "), () => []) //line 17
+  }
 
-    Array.from((formRef.current as HTMLFormElement).children).forEach((child) => {
-      (child as HTMLInputElement).value = "";
-    })
+  function reducer(prevState: typeof initialState, action: ReducerAction) {
 
-    const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
+    switch (action.type) {
+      case 'resetPromptArr':
+        return {
+          ...prevState,
+          promptArr: initialState.promptArr
+        }
+        break;
+      case 'resetUserGuess':
+        return {
+          ...prevState,
+          userGuess: initialState.userGuess
+        }
+        break;
+      case 'updateUserGuess':
 
-    const firstInput = prevRef?.children[0] as HTMLInputElement
+        let newGuess = prevState.userGuess
+        newGuess[action.wordIndex][action.charIndex] = action.inputValue
 
-    firstInput.focus();
-
-    //reset state
-    setPromptArr(addArrayDelim("+", prompt))
-    setPromptWon(false)
-
-  }, [prompt])
-
-
-  //Game State Logic
-
-  function checkWin(userGuess: string[]) {
-    const guess = userGuess.join("")
-
-    console.log("checking win: ", guess, "+", answer.replace(/\s/g, "").trim().toLowerCase())
-    if (guess.toLowerCase() == answer.replace(/\s/g, "").trim().toLowerCase()) {
-      setPromptWon(true)
+        return {
+          ...prevState,
+          userGuess: newGuess
+        }
+        break;
+      default:
+        return prevState
     }
   }
 
-  return (
-    <div className={`w-full h-screen flex flex-col items-center justify-end ${promptWon ? 'bg-gradient-to-r from-green-300 via-green-500 to-green-800' : 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'}`}>
+  const [state, dispatch] = useReducer<Reducer<typeof initialState, ReducerAction>>(reducer, initialState)
 
-      <div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2">
+  useEffect(() => {
+
+    dispatch({ type: 'resetPromptWon' })
+    dispatch({ type: 'resetPromptArr' })
+    dispatch({ type: 'resetUserGuess' })
+
+  }, [prompt])
+
+  return (
+    <div className={`transition ease-in-out delay-300 w-full h-screen flex flex-col items-center justify-end 
+    ${state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
+        'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-violet-800' :
+        'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900'}
+        `}>
+
+
+      < div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2" >
+
         <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
-          {promptArr.map((item, index) => <p
+          {initialState.promptArr.map((item, index) => <p
             key={index}
             className={item === "+" ? 'text-2xl' : 'text-4xl'}
-          >{item}</p>)
-          }
+          >{item}</p>)}
         </span >
 
-        <form ref={formRef} className="">
+        <div className='flex flex-row'>
+          <form ref={formRef}>
+            <div className='flex flex-wrap justify-center'>
 
-          {answer.split("").map((character, index) => {
+              {answer.split(" ").map((word, wordIndex) => (
+                // Container for all inputs PER WORD
 
-            const handleChange = (e: React.BaseSyntheticEvent) => {
+                <div key={wordIndex} className={wordIndex !== 0 ? 'ml-5' : ''}>
 
-              const nextInput = e.currentTarget.nextElementSibling
-              const keyType = (e.nativeEvent as InputEvent).inputType
+                  {word.split("").map((character, charIndex) => {
 
-              const prevRef = (formRef as MutableRefObject<HTMLFormElement>).current;
-              const inputs = [...prevRef.children] as HTMLInputElement[]
-              const guess = inputs.map((input) => input.value)
+                    const handleChange = (e: React.BaseSyntheticEvent) => {
+                      dispatch({
+                        type: 'updateUserGuess',
+                        inputValue: e.target.value,
+                        charIndex: charIndex,
+                        wordIndex: wordIndex
+                      })
+                    }
 
-              if (nextInput !== null && keyType !== "deleteContentBackward") {
-                nextInput.focus()
-              }
+                    return (
+                      <input
+                        className=' border border-blue-500 w-9 h-9 text-center mr-0.5'
+                        onKeyDown={(e) => {
+                          handleKeyDown(e)
+                        }}
+                        onChange={handleChange}
+                        maxLength={1}
+                        key={charIndex} />
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+          </form>
+          {/* Win/Lose Checkbox */}
+          <div className='ml-1'>
+            {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
+              '✔' : '❌'}
+          </div>
 
-              checkWin(guess)
-            }
-
-            if (character === " ") { return }
-
-            return (
-              <input
-                type="text"
-                className=' border border-blue-500 mr-0.5'
-                style={{
-                  marginLeft: answer[index - 1] === ' ' ? '20px' : "0px",
-                  width: "2.2em",
-                  height: "2.2em",
-                  textAlign: "center",
-                }}
-                onKeyDown={(e) => {
-                  handleKeyDown(e)
-                }}
-                onChange={handleChange}
-                maxLength={1}
-                key={index} />
-            )
-          })}
-        </form>
-
+        </div>
 
         <Navigation
           questionNumber={questionNumber}
           answer={answer} />
       </div >
-
 
       {/* Only show socials if contribute */}
       <div>
