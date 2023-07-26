@@ -18,6 +18,16 @@ const data: PromptData[] = [{
   prompt: [<Coffee />, "is", "life"],
   answer: 'coffee is life'
 }, {
+  prompt: ["Welcome", <HouseSharp />],
+  answer: 'welcome home'
+},
+
+
+
+
+
+
+{
   prompt: ["snakes", "on", "a", <AirplanemodeActive />],
   answer: "snakes on a plane",
   socials: {
