@@ -23,16 +23,5 @@ export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
  */
 export const handleKeyDown = (e: any) => {
 
-  let keyCode = e.keycode ? e.keycode : e.which;
-  if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
-    console.log("preventing default")
-    e.preventDefault()
-  }
-
-  if (e.key == "Backspace") {
-    e.target.value = ""
-    e.target.previousSibling.focus()
-    e.preventDefault()
-  }
 }
 
