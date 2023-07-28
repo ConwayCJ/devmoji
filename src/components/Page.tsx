@@ -5,8 +5,6 @@ import React, { useState, useEffect, useRef, useReducer, MutableRefObject, Reduc
 import { PromptData } from '../main'
 import Socials from './Socials'
 
-// memoize values like guessWon
-
 interface PageProps extends PromptData {
   questionNumber: number
 }
@@ -62,10 +60,6 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
       })
     })
 
-    // formRef.current?.childNodes[0].childNodes.map(inputContainer => {
-    //   inputContainer.childNodes.forEach(input => input.value = "")
-    // })
-
     dispatch({ type: 'resetPromptWon' })
     dispatch({ type: 'resetPromptArr' })
     dispatch({ type: 'resetUserGuess' })
@@ -99,6 +93,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
                   {word.split("").map((character, charIndex) => {
 
                     const handleChange = (e: React.BaseSyntheticEvent) => {
+
                       dispatch({
                         type: 'updateUserGuess',
                         inputValue: e.target.value,
@@ -112,25 +107,17 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
                       if (formChildren?.childNodes[wordIndex].childNodes[charIndex + 1]) {
                         formChildren?.childNodes[wordIndex].childNodes[charIndex + 1].focus()
                       }
-
+                      //Skip to next word
                       if (e.target.nextElementSibling == null && wordIndex + 1 !== formChildren?.childNodes.length) {
                         console.log(formChildren?.childNodes)
                         formChildren?.childNodes[wordIndex + 1].childNodes[0].focus()
                       }
-                      console.log(e)
-                      //Delete && Navigate Backward
-                      if (e.nativeEvent.inputType == "deleteContentBackward") {
-                        console.log("deleting")
-                      }
                     }
-
-
-
 
                     return (
                       <input
                         className='border border-blue-500 w-9 h-9 text-center mr-0.5'
-                        onKeyDown={handleKeyDown}
+                        onKeyDown={e => handleKeyDown(e, wordIndex, charIndex, formRef)}
                         onChange={e => handleChange(e, wordIndex, charIndex)}
                         maxLength={1}
                         key={charIndex}
@@ -146,15 +133,12 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
             {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
               '✔' : '❌'}
           </div>
-
         </div>
-
         <Navigation
           questionNumber={questionNumber}
           answer={answer} />
       </div >
 
-      {/* Only show socials if contribute */}
       {socials ?
         <div className=" w-full flex justify-center bg-slate-800 opacity-90 p-4">
           <Socials socials={socials} />

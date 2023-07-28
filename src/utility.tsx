@@ -3,11 +3,11 @@ import { ChangeEvent } from "react"
 
 /**
  * @description Takes a string and an array, 
- * inserts string inbetween each item in array
+ *              inserts string inbetween each item in array
  * 
  * @param delim Symbol to concatenate between each item in array
  * @param array List of items: any type
- * @returns new array with symbol inbetween each item of original array
+ * @returns     new array with symbol inbetween each item of original array
  */
 export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
   const newArr: typeof array = []
@@ -20,10 +20,11 @@ export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
 }
 
 /**
- * @description Checks if user input is a number, prevents default if true 
- * @param e Any type of keyboard/click event
+ * @description Checks if user input is a number, prevents default if true. 
+ *              Also handles deleting + backwards navigation
+ * @param e     Any type of keyboard/click event
  */
-export const handleKeyDown = (e: any) => {
+export const handleKeyDown = (e: any, wordIndex: number, charIndex: number, formRef: HTMLFormElement) => {
 
   let keyCode = e.key.charCodeAt()
 
@@ -34,11 +35,20 @@ export const handleKeyDown = (e: any) => {
     e.preventDefault()
   }
 
-  //if backspace
+  //if backspace, delete + navigate
   if (keyCode === 66) {
     e.preventDefault()
     e.target.value = ""
-    e.target.previousElementSibling.focus()
+
+    const prevWordContainer = formRef.current?.childNodes[0].childNodes[wordIndex - 1]
+
+    if (e.target.previousElementSibling == null) {
+      if (prevWordContainer !== undefined) {
+        prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].focus()
+      }
+    } else {
+      e.target.previousElementSibling.focus()
+    }
   }
 
 
