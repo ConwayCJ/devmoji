@@ -8,7 +8,7 @@ The project aims to provide developers who are new to open source contribution a
 1. &#x2611; Implement the core functionality of the project.
 2. &#x2611; Set up a GitHub repository and make it open source.
 3. &#x2B55; Create a detailed README file with instructions on how to contribute.
-4. &#x2B55; Add a "Credits" section for contributors' socials.
+4. &#x2611; Add a "Credits" section for contributors' socials.
 5. &#x2B55; Style the project. Consider working with a UI designer to collaborate on the design. Provide full credits to the designer in the project.
 6. &#x2B55; Enhance the user experience by implementing features such as:
    - Tracking the number of prompts users have answered correctly.
