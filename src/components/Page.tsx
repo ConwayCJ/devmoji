@@ -4,6 +4,7 @@ import { addArrayDelim, handleKeyDown } from '../utility'
 import React, { useState, useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction } from 'react'
 import { PromptData } from '../main'
 import Socials from './Socials'
+import { CheckCircleOutline, CloseOutlined } from '@mui/icons-material'
 
 interface PageProps extends PromptData {
   questionNumber: number
@@ -68,7 +69,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
 
   return (
     <div className={`transition ease-in-out delay-300 w-full h-screen flex flex-col items-center justify-end 
-    ${state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
+    ${state.userGuess.flat().join("").toLowerCase() === answer.replace(/\s/g, "").trim().toLowerCase() ?
         'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-violet-800' :
         'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900'}
         `}>
@@ -129,8 +130,8 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
             </div>
             {/* Win/Lose Checkbox */}
             <div className='ml-1 flex items-center'>
-              {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
-                '✔' : '❌'}
+              {state.userGuess.flat().join("").toLowerCase() === answer.replace(/\s/g, "").trim().toLowerCase() ?
+                <CheckCircleOutline color="success" /> : "❌"}
             </div>
           </form>
         </div>
