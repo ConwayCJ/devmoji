@@ -37,8 +37,8 @@ const data: PromptData[] = [{
   }
 },
 {
-  prompt: ["The", "best", "company", "on", "earth", "is", <AppleIcon />],
-  answer: "The best company on earth is Apple",
+  prompt: [<AppleIcon />, "juice"],
+  answer: "apple juice",
   socials: {
     LIurl: "https://www.linkedin.com/in/movarnell/",
     GHurl: "https://github.com/movarnell"
