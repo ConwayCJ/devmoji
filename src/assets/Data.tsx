@@ -1,4 +1,5 @@
 import { HourglassBottom, HouseSharp, WbSunny, HeartBroken, Coffee, AirplanemodeActive } from '@mui/icons-material'
+import AppleIcon from '@mui/icons-material/Apple';
 import { PromptData } from '../main'
 
 /**
@@ -33,6 +34,14 @@ const data: PromptData[] = [{
   socials: {
     LIurl: "https://www.linkedin.com/in/nereidarondon/",
     GHurl: "https://github.com/NereidaRondon"
+  }
+},
+{
+  prompt: ["The", "best", "company", "on", "earth", "is", <AppleIcon />],
+  answer: "The best company on earth is Apple",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/movarnell/",
+    GHurl: "https://github.com/movarnell"
   }
 }
 
