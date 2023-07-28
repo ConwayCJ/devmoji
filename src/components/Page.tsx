@@ -73,22 +73,22 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
         'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900'}
         `}>
 
-      < div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2" >
+      < div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2 h-72" >
 
-        <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
+        <span className={`promptContainer flex justify-center align-middle w-60 h-full mb-2`}>
           {initialState.promptArr.map((item, index) => <p
             key={index}
-            className={item === "+" ? 'text-2xl flex items-center' : 'text-4xl flex items-center'}
+            className={item === "+" ? 'text-2xl flex items-center ml-3 mr-4' : 'text-4xl flex items-center'}
           >{item}</p>)}
         </span >
 
-        <div className='flex flex-row'>
-          <form ref={formRef}>
+        <div className=''>
+          <form ref={formRef} className='flex flex-row mb-2'>
             <div className='flex flex-wrap justify-center'>
 
               {answer.split(" ").map((word, wordIndex) => (
 
-                <div key={wordIndex} className={wordIndex !== 0 ? 'ml-5' : ''}>
+                <div key={wordIndex} className={wordIndex !== 0 ? 'ml-5 mb-2' : ''}>
 
                   {word.split("").map((character, charIndex) => {
 
@@ -127,12 +127,12 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
                 </div>
               ))}
             </div>
+            {/* Win/Lose Checkbox */}
+            <div className='ml-1 flex items-center'>
+              {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
+                '✔' : '❌'}
+            </div>
           </form>
-          {/* Win/Lose Checkbox */}
-          <div className='ml-1 flex items-center'>
-            {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
-              '✔' : '❌'}
-          </div>
         </div>
         <Navigation
           questionNumber={questionNumber}
