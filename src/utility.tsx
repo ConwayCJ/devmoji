@@ -1,3 +1,6 @@
+import { key } from "localforage"
+import { ChangeEvent } from "react"
+
 /**
  * @description Takes a string and an array, 
  * inserts string inbetween each item in array
@@ -13,7 +16,6 @@ export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
     newArr.push(delim)
   }
   array.forEach(pushWithDelim)
-  console.log(newArr.slice(0, -1))
   return newArr.slice(0, -1)
 }
 
@@ -22,6 +24,23 @@ export const addArrayDelim = (delim: string, array: React.ReactNode[]) => {
  * @param e Any type of keyboard/click event
  */
 export const handleKeyDown = (e: any) => {
+
+  let keyCode = e.key.charCodeAt()
+
+  console.log(keyCode)
+
+  //if input is NOT a-z or A-Z prevent default
+  if (!(keyCode < 123 && keyCode > 96 || keyCode > 64 && keyCode < 91)) {
+    e.preventDefault()
+  }
+
+  //if backspace
+  if (keyCode === 66) {
+    e.preventDefault()
+    e.target.value = ""
+    e.target.previousElementSibling.focus()
+  }
+
 
 }
 

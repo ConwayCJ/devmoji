@@ -15,8 +15,8 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
   const formRef = useRef<HTMLFormElement>(null)
 
   const initialState = {
-    promptArr: addArrayDelim("+", prompt), //this is line 14
-    userGuess: Array.from(answer.split(" "), () => []) //line 17
+    promptArr: addArrayDelim("+", prompt),
+    userGuess: Array.from(answer.split(" "), () => [])
   }
 
   function reducer(prevState: typeof initialState, action: ReducerAction) {
@@ -38,7 +38,6 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
 
         let newGuess = prevState.userGuess
         newGuess[action.wordIndex][action.charIndex] = action.inputValue
-
         return {
           ...prevState,
           userGuess: newGuess
@@ -53,6 +52,20 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
 
   useEffect(() => {
 
+    //focus first input on prompt change
+    formRef.current[0].focus()
+
+    //Reset value inputs to empty
+    formRef.current?.childNodes[0].childNodes.forEach(inputContainer => {
+      inputContainer.childNodes.forEach(input => {
+        input.value = ""
+      })
+    })
+
+    // formRef.current?.childNodes[0].childNodes.map(inputContainer => {
+    //   inputContainer.childNodes.forEach(input => input.value = "")
+    // })
+
     dispatch({ type: 'resetPromptWon' })
     dispatch({ type: 'resetPromptArr' })
     dispatch({ type: 'resetUserGuess' })
@@ -66,13 +79,12 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
         'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900'}
         `}>
 
-
       < div className="flex flex-col items-center absolute top-1/2 -translate-y-1/2" >
 
         <span className={`promptContainer flex justify-around align-middle w-60 h-full mb-10`}>
           {initialState.promptArr.map((item, index) => <p
             key={index}
-            className={item === "+" ? 'text-2xl' : 'text-4xl'}
+            className={item === "+" ? 'text-2xl flex items-center' : 'text-4xl flex items-center'}
           >{item}</p>)}
         </span >
 
@@ -81,7 +93,6 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
             <div className='flex flex-wrap justify-center'>
 
               {answer.split(" ").map((word, wordIndex) => (
-                // Container for all inputs PER WORD
 
                 <div key={wordIndex} className={wordIndex !== 0 ? 'ml-5' : ''}>
 
@@ -94,17 +105,36 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
                         charIndex: charIndex,
                         wordIndex: wordIndex
                       })
+
+                      const formChildren = formRef.current?.childNodes[0]
+
+                      //Navigate Forward
+                      if (formChildren?.childNodes[wordIndex].childNodes[charIndex + 1]) {
+                        formChildren?.childNodes[wordIndex].childNodes[charIndex + 1].focus()
+                      }
+
+                      if (e.target.nextElementSibling == null && wordIndex + 1 !== formChildren?.childNodes.length) {
+                        console.log(formChildren?.childNodes)
+                        formChildren?.childNodes[wordIndex + 1].childNodes[0].focus()
+                      }
+                      console.log(e)
+                      //Delete && Navigate Backward
+                      if (e.nativeEvent.inputType == "deleteContentBackward") {
+                        console.log("deleting")
+                      }
                     }
+
+
+
 
                     return (
                       <input
-                        className=' border border-blue-500 w-9 h-9 text-center mr-0.5'
-                        onKeyDown={(e) => {
-                          handleKeyDown(e)
-                        }}
-                        onChange={handleChange}
+                        className='border border-blue-500 w-9 h-9 text-center mr-0.5'
+                        onKeyDown={handleKeyDown}
+                        onChange={e => handleChange(e, wordIndex, charIndex)}
                         maxLength={1}
-                        key={charIndex} />
+                        key={charIndex}
+                      />
                     )
                   })}
                 </div>
@@ -112,7 +142,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
             </div>
           </form>
           {/* Win/Lose Checkbox */}
-          <div className='ml-1'>
+          <div className='ml-1 flex items-center'>
             {state.userGuess.flat().join("") === answer.replace(/\s/g, "").trim().toLowerCase() ?
               '✔' : '❌'}
           </div>
@@ -125,11 +155,11 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
       </div >
 
       {/* Only show socials if contribute */}
-      <div>
-        {socials ? <Socials socials={socials} /> : <div></div>}
-      </div >
-
+      {socials ?
+        <div className=" w-full flex justify-center bg-slate-800 opacity-90 p-4">
+          <Socials socials={socials} />
+        </div >
+        : <></>}
     </div >
   )
 }
-
