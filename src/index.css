@@ -26,6 +26,38 @@ html {
   font-size: 50px;
 }
 
+.welcomeContainer {
+  font-size: 42px;
+}
+
+.welcomeContainer p {
+  margin-left: 4px;
+  margin-right: 4px;
+  transition: transform 0.53s ease-in-out;
+}
+
+.welcomeContainer p:hover {
+  transition: transform 0.36s ease-in-out;
+  transform: translateY(-10px);
+  /* animation: wavy 1s;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-delay: 150ms; */
+}
+
+/* @keyframes wavy {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+} */
+
 body {
   margin: 0;
   padding: 0;
