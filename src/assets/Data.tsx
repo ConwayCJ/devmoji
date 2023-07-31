@@ -1,8 +1,7 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { HourglassBottom, HouseSharp, WbSunny, HeartBroken, Coffee, AirplanemodeActive } from '@mui/icons-material'
+import { HouseSharp, WbSunny, Coffee, AirplanemodeActive } from '@mui/icons-material'
 //React Icons Imports: https://react-icons.github.io/react-icons
 import { } from 'react-icons/fa';
-//
 import { PromptData } from '../main'
 
 const data: PromptData[] = [{
