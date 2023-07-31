@@ -2,9 +2,9 @@ import { key } from "localforage"
 import { ChangeEvent } from "react"
 
 /**
- * @description Takes a string and an array, 
+ * @description Takes a string and an array,
  *              inserts string inbetween each item in array
- * 
+ *
  * @param delim Symbol to concatenate between each item in array
  * @param array List of items: any type
  * @returns     new array with symbol inbetween each item of original array

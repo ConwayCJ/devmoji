@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'shrekregular';
+  src: url('../public/shrek-webfont.woff') format('woff'),
+    url('../public/shrek-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   font-family: Quicksand, Ubuntu, Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   font-weight: 400;
-  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,13 +23,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+input {
+  background-color: rgba(7, 0, 63, 0.871);
+}
+
 html {
   padding: 0;
   margin: 0;
-}
-
-.promptContainer svg {
-  font-size: 50px;
 }
 
 body {
@@ -35,15 +41,170 @@ body {
   font-size: 2.5em;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.promptContainer svg {
+  font-size: 50px;
+}
+
+.welcomeContainer {
+  font-size: 42px;
+  width: calc(80vw);
+}
+
+.welcomeContainer p {
+  transition: transform 0.53s ease-in-out;
+  text-shadow: rgba(0, 0, 0, 0.611) 1px 0px 20px;
+  font-family: 'grandstander';
+  text-align: center;
+  font-size: 120px;
+}
+
+.exitPage {
+  background-image: url('../public/shrek-s-swamp-house-912ivi1v9qemna0n.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(70vw);
+    font-size: 28px;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(70vw);
+    font-size: 20px;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(100%);
   }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shrekContainer {
+  /* This section calls the slideInFromLeft animation we defined above */
+  animation: 4s ease-out -1s 1 slideInFromLeft;
+}
+
+.container {
+  max-width: 550px;
+  margin: 0 auto;
+  .bubble {
+    background-color: #e0e5ec;
+    color: black;
+    font-weight: bolder;
+    box-shadow: -8px -8px 20px 0px #fff9, -6px -6px 6px 0px #fff9,
+      8px 8px 20px 0px #0001, 5px 5px 6px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+    line-height: 2;
+    border-radius: 10px;
+    padding: 2px 20px;
+    margin-top: 60px;
+    min-height: 100px;
+    text-align: center;
+    font-family: 'shrekregular';
+
+    &:nth-child(1) {
+      border-left: 10px solid deeppink;
+    }
+    &:nth-child(1):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 20px;
+      border-width: 30px 0 0 30px;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 40px 0;
+    }
+
+    &:nth-child(2) {
+      border-right: 10px solid orange;
+    }
+    &:nth-child(2):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 400px;
+      border-width: 30px 30px 0 0;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 0 40px;
+    }
+
+    &:nth-child(3) {
+      border-left: 10px solid limegreen;
+    }
+    &:nth-child(3):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 20px;
+      border-width: 30px 0 0 30px;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 40px 0;
+    }
+
+    .detail {
+      font-style: italic;
+      display: inline;
+      float: right;
+    }
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .welcomeContainer p {
+    font-size: 11vw;
+  }
+}
+
+@media (max-width: 700.98px) {
+  .welcomeContainer p {
+    font-size: 14vw;
+  }
+}
+
+@media (max-width: 410.98px) {
+  .welcomeContainer p {
+    font-size: 24vw;
+  }
+}
+
+.welcomeContainer p:hover {
+  transition: transform 0.36s ease-in-out;
+  transform: translateY(-10px);
+}
+
+.cta {
+  text-shadow: rgb(0, 0, 0) 1px 0px 20px;
+  color: rgb(250, 204, 160);
+  font-family: 'nunito', 'Courier New', Courier, monospace;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.footer {
+  font-family: nunito;
+  text-shadow: rgb(0, 0, 0) 1px 0px 20px;
 }
