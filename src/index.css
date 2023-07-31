@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'shrekregular';
+  src: url('../public/shrek-webfont.woff') format('woff'),
+    url('../public/shrek-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   font-family: Quicksand, Ubuntu, Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
@@ -46,6 +54,107 @@ body {
   font-family: 'grandstander';
   text-align: center;
   font-size: 120px;
+}
+
+.exitPage {
+  background-image: url('../public/shrek-s-swamp-house-912ivi1v9qemna0n.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(70vw);
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(70vw);
+    font-size: 20px;
+  }
+}
+
+.container {
+  max-width: 550px;
+  margin: 0 auto;
+  .bubble {
+    background-color: #e0e5ec;
+    color: black;
+    font-weight: bolder;
+    box-shadow: -8px -8px 20px 0px #fff9, -6px -6px 6px 0px #fff9,
+      8px 8px 20px 0px #0001, 5px 5px 6px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+    line-height: 2;
+    border-radius: 10px;
+    padding: 2px 20px;
+    margin-top: 60px;
+    min-height: 100px;
+    text-align: center;
+    font-family: 'shrekregular';
+
+    &:nth-child(1) {
+      border-left: 10px solid deeppink;
+    }
+    &:nth-child(1):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 20px;
+      border-width: 30px 0 0 30px;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 40px 0;
+    }
+
+    &:nth-child(2) {
+      border-right: 10px solid orange;
+    }
+    &:nth-child(2):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 400px;
+      border-width: 30px 30px 0 0;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 0 40px;
+    }
+
+    &:nth-child(3) {
+      border-left: 10px solid limegreen;
+    }
+    &:nth-child(3):after {
+      content: '';
+      display: block;
+      position: relative;
+      margin-top: -40px;
+      padding-top: 0px;
+      bottom: -30px;
+      left: 20px;
+      border-width: 30px 0 0 30px;
+      border-style: solid;
+      border-color: #e0e5ec transparent;
+      width: 2px;
+      border-radius: 0 0 40px 0;
+    }
+
+    .detail {
+      font-style: italic;
+      display: inline;
+      float: right;
+    }
+  }
 }
 
 @media (max-width: 1199.98px) {

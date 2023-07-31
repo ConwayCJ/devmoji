@@ -143,7 +143,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
       {socials ?
         <div className=" w-full flex justify-center  bg-sky-950 opacity-90 p-4">
           <Socials socials={socials} />
-        </div >
+        </div>
         : <></>}
     </div >
   )
