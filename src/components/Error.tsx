@@ -2,12 +2,18 @@ import shrek from '../../public/shrek_over_wall.png'
 
 export default function Error() {
 
+  const imageLoaded = false
+
 
   return (
-    <div className="exitPage w-full h-screen flex flex-col justify-end items-center">
+    <div className="flex flex-col justify-between align-middle overflow-hidden exitPage w-full h-screen">
+      <div></div>
+      <div></div>
+
+
+
 
       <div className='container'>
-
         <div className='bubble flex flex-row flex-wrap items-center justify-center'>
           <p className="mr-4">
             D o n k e y
@@ -18,19 +24,19 @@ export default function Error() {
           <p>
             The swamp couldn't be found.
           </p>
-
         </div>
+
       </div>
-      <div className=' shrekContainer mt-12'>
+
+      <div className='shrekContainer self-center'>
         <img
           style={{
             width: "100%",
             height: "auto",
             maxWidth: "900px"
           }}
-
-
-          src={shrek}></img>
+          src={shrek}
+        ></img>
 
       </div>
     </div>
