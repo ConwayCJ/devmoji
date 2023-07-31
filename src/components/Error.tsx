@@ -4,7 +4,7 @@ export default function Error() {
 
 
   return (
-    <div className=" exitPage w-full h-screen flex flex-col justify-end items-center">
+    <div className="exitPage w-full h-screen flex flex-col justify-end items-center">
 
       <div className='container'>
 
@@ -18,15 +18,18 @@ export default function Error() {
           <p>
             The swamp couldn't be found.
           </p>
+
         </div>
       </div>
-      <div className='mt-12'>
+      <div className=' shrekContainer mt-12'>
         <img
           style={{
             width: "100%",
             height: "auto",
             maxWidth: "900px"
           }}
+
+
           src={shrek}></img>
 
       </div>

@@ -76,6 +76,20 @@ body {
   }
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shrekContainer {
+  /* This section calls the slideInFromLeft animation we defined above */
+  animation: 4s ease-out -1s 1 slideInFromLeft;
+}
+
 .container {
   max-width: 550px;
   margin: 0 auto;
