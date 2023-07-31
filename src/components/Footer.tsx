@@ -1,37 +1,22 @@
-import { GitHub, LinkedIn } from '@mui/icons-material'
+import { AccountCircle, GitHub, LinkedIn } from '@mui/icons-material'
+import { Link } from '@mui/material'
 import React from 'react'
 
 export default function Footer() {
   return (
-    <div className='flex mb-6'>
-
-      {/*  
-              CREATOR SOCIALS      CONTRIBUTING
-                 LI                   readme
-                 GH                   GH
-                 portfolio
-      
-      */}
-
-      <div className='container flex flex-col items-center mr-5'>
-        <h1 className='border-b-2 border-slate-50'>SOCIALS:</h1>
-
-        <span className='mt-3'>
-          <a href="https://www.linkedin.com/in/conwaycj/" className='mr-1' target="_blank"><LinkedIn /></a>
-          <a href="https://github.com/ConwayCJ/opensourceproject" target="_blank"><GitHub /></a>
-        </span>
-      </div>
-
-      <div className='container flex flex-col items-center ml-5'>
-        <h1 className='border-b-2 border-slate-50'>CONTRIBUTING:</h1>
-
-        <span className='mt-3'>
-          <a href="https://github.com/ConwayCJ/opensourceproject/blob/main/README.md" target="_blank">Documentation</a>
-        </span>
-      </div>
-
-
-
+    <div className=' mt-20 footer w-full flex flex-col items-center bg-sky-950 p-4'>
+      <span className='mt-1 border-b-2 pb-1'>
+        <a href="https://github.com/ConwayCJ" className='text-blue-400 ml-1 mr-1 hover:text-blue-600 transition-colors'><GitHub /></a>
+        <a href="https://www.linkedin.com/in/conwaycj/" className='text-blue-400 ml-1 mr-1 hover:text-blue-600 transition-colors'><LinkedIn /></a>
+        <a href="https://christopherjconway.netlify.app/" className='text-blue-400 ml-1 mr-1 hover:text-blue-600 transition-colors'><AccountCircle /></a>
+      </span>
+      <span className='mt-1'>
+        <a href="https://github.com/ConwayCJ/devmoji" className='font-medium text-blue-600 dark:text-blue-500 hover:underline hover:text-blue-600 transition-colors'>
+          Contribute</a>
+      </span>
+      <span>
+        <p>@2023 Christopher Conway</p>
+      </span>
     </div>
   )
 }

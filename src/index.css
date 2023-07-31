@@ -22,42 +22,6 @@ html {
   margin: 0;
 }
 
-.promptContainer svg {
-  font-size: 50px;
-}
-
-.welcomeContainer {
-  font-size: 42px;
-}
-
-.welcomeContainer p {
-  margin-left: 4px;
-  margin-right: 4px;
-  transition: transform 0.53s ease-in-out;
-}
-
-.welcomeContainer p:hover {
-  transition: transform 0.36s ease-in-out;
-  transform: translateY(-10px);
-  /* animation: wavy 1s;
-  animation-direction: normal;
-  animation-fill-mode: both;
-  animation-iteration-count: 1;
-  animation-delay: 150ms; */
-}
-
-/* @keyframes wavy {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-} */
-
 body {
   margin: 0;
   padding: 0;
@@ -67,15 +31,55 @@ body {
   font-size: 2.5em;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.promptContainer svg {
+  font-size: 50px;
+}
+
+.welcomeContainer {
+  font-size: 42px;
+  width: calc(80vw);
+}
+
+.welcomeContainer p {
+  transition: transform 0.53s ease-in-out;
+  text-shadow: rgba(0, 0, 0, 0.611) 1px 0px 20px;
+  font-family: 'grandstander';
+  text-align: center;
+  font-size: 120px;
+}
+
+@media (max-width: 1199.98px) {
+  .welcomeContainer p {
+    font-size: 11vw;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media (max-width: 700.98px) {
+  .welcomeContainer p {
+    font-size: 14vw;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media (max-width: 410.98px) {
+  .welcomeContainer p {
+    font-size: 24vw;
   }
+}
+
+.welcomeContainer p:hover {
+  transition: transform 0.36s ease-in-out;
+  transform: translateY(-10px);
+}
+
+.cta {
+  text-shadow: rgb(0, 0, 0) 1px 0px 20px;
+  color: rgb(250, 204, 160);
+  font-family: 'nunito', 'Courier New', Courier, monospace;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.footer {
+  font-family: nunito;
+  text-shadow: rgb(0, 0, 0) 1px 0px 20px;
 }

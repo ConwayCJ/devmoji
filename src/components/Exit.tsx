@@ -5,8 +5,10 @@ import ReactConfetti from 'react-confetti'
 import Footer from './Footer'
 
 
+
 export default function Exit() {
   const { width, height } = useWindowSize()
+
 
   return (
     <div className='h-screen w-full flex flex-col items-center justify-end'>

@@ -6,19 +6,6 @@ import axios from 'axios'
 
 export default function LandingPage() {
 
-
-  // const handlePost = () => {
-  //   const handlePost = () => {
-  //     axios.post('/api/data', postData)
-  //       .then((response) => {
-  //         console.log('Data successfully saved:', response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error saving data:', error);
-  //       });
-  //   };
-  // }
-
   const getRandomColor = () => {
     const randomRgb: string = `rgb(${Math.random() * 100 + 155},${Math.random() * 100 + 155},${Math.random() * 100 + 155})`
 
@@ -37,42 +24,13 @@ export default function LandingPage() {
 
   }
 
-  // .welcomeContainer p:hover {
-  //   animation: wavy 0.5s infinite;
-  //   animation-direction: alternate;
-  //   animation-delay: 100ms;
-  //   color: rgba(119, 48, 48, 0);
-  // }
-
-  // @keyframes wavy {
-  //   from {
-  //     transform: translate3d(0, 0, 0);
-  //   }
-  //   to {
-  //     transform: translate3d(0, -20px, 0);
-  //   }
-  // }
-
-  const newspaperSpinning = [
-    { transform: "rotate(0) scale(1)" },
-    { transform: "rotate(360deg) scale(0)" },
-  ];
-
-  const newspaperTiming = {
-    duration: 2000,
-    iterations: 1,
-  };
-
   return (
-    <div className='w-full h-screen flex flex-col justify-between items-center'>
+    <div className='w-full bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900 h-screen flex flex-col items-center justify-end'>
 
-      <div></div>
-      <div className='flex flex-col align-middle items-center'>
+      <div className='flex flex-col items-center'>
 
-        <div className='welcomeContainer mb-12 flex flex-row flex-wrap justify-center'>
-          <h6>Welcome</h6>
-          <h6 className='ml-4'>to</h6>
-          <span className='flex flex-row bg-slate-900 rounded-xl p-2 ml-2 shadow-md shadow-sky-800 opacity-80'>
+        <div className='welcomeContainer'>
+          <span className='flex flex-row justify-center'>
             <p style={{ color: getRandomColor() }}>D</p>
             <p style={{ color: getRandomColor() }}>e</p>
             <p style={{ color: getRandomColor() }}>v</p>
@@ -82,17 +40,23 @@ export default function LandingPage() {
             <p style={{ color: getRandomColor() }}>i</p>
           </span>
         </div>
-        <span className=' text-center'>
-          Wordle with Emoji's. Guess the phrase!
+        <span className='cta text-center text-2xl'>
+          <p>
+            Wordle with emojis.
+          </p>
+          <p>
+            Guess the phrase!
+          </p>
         </span>
       </div>
-      <div>
-        <div>
-          <Link className=' text-5xl bg-cyan-900 rounded-lg px-6 py-2 ring ring-gray-300 hover:bg-cyan-700 transition delay-75' to={'/1'}>Play</Link>
-        </div>
-      </div>
+
+
+      <Link className='text-5xl mt-28 bg-cyan-900 rounded-lg px-6 py-2 ring ring-gray-300 hover:bg-cyan-700 transition delay-75' to={'/1'}>Play</Link>
+
+
 
       <Footer />
+
 
 
     </div>
