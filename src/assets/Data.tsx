@@ -1,7 +1,12 @@
-import { HourglassBottom, HouseSharp, WbSunny, HeartBroken, Coffee, AirplanemodeActive } from '@mui/icons-material'
-import AppleIcon from '@mui/icons-material/Apple';
+import { HourglassBottom, HouseSharp, WbSunny, HeartBroken, Coffee, AirplanemodeActive, Star, AcUnit, Blind } from '@mui/icons-material'
 
 import { PromptData } from '../main'
+
+/**
+ * Todo: Add credits, option for LinkedIn/GitHub/Socials links to contributor
+ * Consideration: Use SVG Sprites for emojis, import using a generic component
+ */
+
 
 const data: PromptData[] = [{
   prompt: [<WbSunny />, "day"],
@@ -16,7 +21,14 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Welcome", <HouseSharp />],
   answer: 'welcome home'
-}, {
+},
+
+
+
+
+
+
+{
   prompt: ["snakes", "on", "a", <AirplanemodeActive />],
   answer: "snakes on a plane",
   socials: {
@@ -25,14 +37,29 @@ const data: PromptData[] = [{
   }
 },
 {
-  prompt: [<AppleIcon />, "seed", "plant"],
-  answer: "apple seed plant",
+  prompt: [<Star/>, "struck"],
+  answer: "star struck",
   socials: {
     LIurl: "https://www.linkedin.com/in/movarnell/",
     GHurl: "https://github.com/movarnell"
   }
-}
-
+},
+{
+  prompt: [<AcUnit />, "storm"],
+  answer: "snow storm",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/movarnell/",
+    GHurl: "https://github.com/movarnell"
+  }
+},
+{
+  prompt: [<Blind/>, "leading", <Blind/>],
+  answer: "blind leading the blind",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/movarnell/",
+    GHurl: "https://github.com/movarnell"
+  }
+},
 ]
 
 export default data
