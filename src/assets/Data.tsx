@@ -1,11 +1,9 @@
+//Material UI Imports: https://mui.com/material-ui/material-icons/
 import { HourglassBottom, HouseSharp, WbSunny, HeartBroken, Coffee, AirplanemodeActive } from '@mui/icons-material'
+//React Icons Imports: https://react-icons.github.io/react-icons
+import { } from 'react-icons/fa';
+//
 import { PromptData } from '../main'
-
-/**
- * Todo: Add credits, option for LinkedIn/GitHub/Socials links to contributor
- * Consideration: Use SVG Sprites for emojis, import using a generic component
- */
-
 
 const data: PromptData[] = [{
   prompt: [<WbSunny />, "day"],
@@ -20,14 +18,7 @@ const data: PromptData[] = [{
 }, {
   prompt: ["Welcome", <HouseSharp />],
   answer: 'welcome home'
-},
-
-
-
-
-
-
-{
+}, {
   prompt: ["snakes", "on", "a", <AirplanemodeActive />],
   answer: "snakes on a plane",
   socials: {
