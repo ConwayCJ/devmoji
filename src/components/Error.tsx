@@ -1,4 +1,4 @@
-import shrek from '../../public/shrek_over_wall.png'
+import shrek from '../assets/shrek_over_wall.png'
 
 export default function Error() {
 
@@ -15,10 +15,10 @@ export default function Error() {
 
       <div className='container'>
         <div className='bubble flex flex-row flex-wrap items-center justify-center'>
-          <p className="mr-4">
+          <p className="mr-4 ">
             D o n k e y
           </p>
-          <p>
+          <p className="mr-4">
             404.
           </p>
           <p>

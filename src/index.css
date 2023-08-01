@@ -4,8 +4,8 @@
 
 @font-face {
   font-family: 'shrekregular';
-  src: url('../public/shrek-webfont.woff') format('woff'),
-    url('../public/shrek-webfont.woff2') format('woff2');
+  src: url('./src/assets/shrek-webfont.woff') format('woff'),
+    url('./src/assets/shrek-webfont.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -59,7 +59,7 @@ body {
 }
 
 .exitPage {
-  background-image: url('../public/shrek-s-swamp-house-912ivi1v9qemna0n.jpg');
+  background-image: url('/src/assets/shrek-s-swamp-house-912ivi1v9qemna0n.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
