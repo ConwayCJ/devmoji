@@ -42,15 +42,34 @@ where "url you just copied" (without the quotation marks) is the url to this rep
 ```
 
 
-   ***prompt*** key:
+  ### prompt key:
   - Must be an array. 3 items max. Use any number of emojis - either use emojis from your device or find one from any of the listed sites:
       [MaterialUI](https://react-icons.github.io/react-icons)\
       [React Icons](https://mui.com/material-ui/material-icons/)
 
-   ***Answer*** key:
+  - ***Choosing a new emoji***\
+   In Data.tsx - make sure you import your emoji like the example below. The FROM location must match the library you're using.\
+    For example, React Icons [Font Awesome](https://react-icons.github.io/react-icons/icons?name=fa) has a different FROM location than [Hero Icons](https://react-icons.github.io/react-icons/icons?name=hi)
+
+```javascript
+    //Font Awesome example:
+    import { IconName } from "react-icons/fa";
+```
+
+  - If I want to use Hero Icons, but it doesn't exist in Data.tsx - I must import it from that new location. The Import syntax will be on every page at [React Icons website](https://react-icons.github.io/react-icons)
+
+  ```javascript 
+    //Font Awesome Icons:
+    import { IconName } from "react-icons/fa";
+    //Hero Icons:
+    import { IconName } from "react-icons/hi";
+    
+  ```
+
+  ### answer key:
   - Your answer must be a string. Separate words with spaces. Use lowercase lettering.
 
-   ***socials*** key:
+  ### socials key:
   - This is OPTIONAL. If you do not want links to your socials on the application, do not add a socials key.
   - Follow the following format. LIurl must be a string. GHurl must be a string.
 
