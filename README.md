@@ -97,6 +97,15 @@ socials: {
    <li>Push your changes to GitHub</li>
 </ol>
 
+- Example add/commit/push workflow:
+
+  ```javascript
+    git add Data.tsx
+    git commit -m "Add prompt "Star Trek""
+    git push
+  ```
+
+
 # Submit your changes for review
 
 <img align="right" width="300" src="https://github.com/ConwayCJ/devmoji/assets/94498167/2aa410ce-ff0e-44ab-94cc-6b8be47b734f" alt="clone this repository" />
