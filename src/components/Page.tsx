@@ -1,10 +1,10 @@
 // @ts-nocheck
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
-import React, { useState, useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction } from 'react'
+import React, { useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction } from 'react'
 import { PromptData } from '../main'
 import Socials from './Socials'
-import { CheckCircleOutline, CloseOutlined } from '@mui/icons-material'
+import { CheckCircleOutline } from '@mui/icons-material'
 
 interface PageProps extends PromptData {
   questionNumber: number

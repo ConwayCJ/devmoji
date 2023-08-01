@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
-import { FormEvent, FormEventHandler } from 'react'
-import axios from 'axios'
-
 
 export default function LandingPage() {
 

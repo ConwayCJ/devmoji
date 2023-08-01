@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowBack, ArrowForward, HouseRounded } from '@mui/icons-material'
 
-/**
- * todo: Fix | any on form element
- *       
- *
- */
-
 export default function Navigation({ questionNumber }: any) {
 
   const navigateLeft = questionNumber -= 1

@@ -1,6 +1,4 @@
 import { AccountCircle, GitHub, LinkedIn } from '@mui/icons-material'
-import { Link } from '@mui/material'
-import React from 'react'
 
 export default function Footer() {
   return (
