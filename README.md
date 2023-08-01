@@ -138,9 +138,11 @@ After you've checked that your message follows the proper format, click the "Cre
 
 ## Thats it!
 
-Upon seeing this screen, all that's left is to either wait for me to give your prompt feedback and request changes.\
-In the case changes are requested, you need to follow the same workflow to request and updated pull request
-If no changes have been requested, it will be merged into the production branch.
+Upon seeing this screen, either your contribution will be accepted and merged into the main branch, or your contribution will receive feedback and changes will be requested.
+<ol>
+  <li> In the case changes are requested, follow the same workflow to request and update your pull request.</li>
+  <li> If no changes have been requested, it will be merged into the production branch.</li>
+</ol>
 
 ## Thank you for contributing!
 
@@ -168,13 +170,7 @@ Congrats! You just completed the standard fork -> clone -> edit -> pull request 
 ## Code Stack
 The project is built using the following technologies and frameworks:
 
-<div class="logo-container">
-    <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/2431cf81-adb5-4d7e-aa81-093152436547" alt="React Logo" width="80" height="50">
-    <img src="https://w7.pngwing.com/pngs/915/519/png-transparent-typescript-hd-logo-thumbnail.png" alt="TypeScript Logo" width="50" height="50">
-    <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/ff0faa2a-ae21-43c1-aaab-46e1d15ec9b5" width="50" height="50">
-    <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/fb60bde2-1934-4c0e-98ac-c703b0abea22" width="50" height="50">
-    <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/e3822ed0-d622-44d6-a05f-e2caed910073" width="50" height="50">
-    <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/4b5a6fc0-1fbe-463d-aaaa-4ba8dfa234bb" width="50" height="50">
-    <img src="https://w7.pngwing.com/pngs/761/513/png-transparent-material-ui-logo-thumbnail.png" alt="Material UI Logo" width="50" height="50">
-</div>
 
+| React        | TypeScript   | Vite         | HTML5        | CSS3         | TailwindCSS  |
+|--------------|--------------|--------------|--------------|--------------|--------------|
+| ![React Logo](https://github.com/ConwayCJ/devmoji/assets/94498167/2431cf81-adb5-4d7e-aa81-093152436547) | ![TypeScript Logo](https://w7.pngwing.com/pngs/915/519/png-transparent-typescript-hd-logo-thumbnail.png) | ![Vite Logo](https://github.com/ConwayCJ/devmoji/assets/94498167/ff0faa2a-ae21-43c1-aaab-46e1d15ec9b5) | ![HTML5 Logo](https://github.com/ConwayCJ/devmoji/assets/94498167/fb60bde2-1934-4c0e-98ac-c703b0abea22) | ![CSS3 Logo](https://github.com/ConwayCJ/devmoji/assets/94498167/e3822ed0-d622-44d6-a05f-e2caed910073) | ![TailwindCSS Logo](https://github.com/ConwayCJ/devmoji/assets/94498167/4b5a6fc0-1fbe-463d-aaaa-4ba8dfa234bb) |
