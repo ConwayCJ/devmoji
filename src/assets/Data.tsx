@@ -52,14 +52,7 @@ const data: PromptData[] = [{
     GHurl: "https://github.com/movarnell"
   }
 },
-{
-  prompt: [<Blind/>, "leading", <Blind/>],
-  answer: "blind leading the blind",
-  socials: {
-    LIurl: "https://www.linkedin.com/in/movarnell/",
-    GHurl: "https://github.com/movarnell"
-  }
-},
+
 ]
 
 export default data
