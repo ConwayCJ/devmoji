@@ -16,24 +16,43 @@ Fork this repository by clicking on the fork button on the top of the page.
 This will create a copy of this repository on your account.
 
 
-
 <img align="right" width="300" src="https://github.com/ConwayCJ/devmoji/assets/94498167/1e12f33a-2177-4584-aaa5-5c78e4cc92b3" alt="clone this repository" />
 
 ## Clone the repository
 
-Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the code button and then click the copy to clipboard icon.
+Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the `code` button and then click the `copy to clipboard` icon.
 
 Open a terminal and run the following git command:
 
-git clone "url you just copied"
+`git clone "url you just copied"`
 where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
+
+## Create a branch
+
+Change to the repository directory on your computer (if you are not already there) of the project you cloned:
+
+```javascript
+cd devmoji
+```
+
+Now create a branch using the git switch command:
+
+```javascript
+git checkout -b your-new-branch-name
+```
+
+For example:
+
+```javascript
+git checkout -b new-prompt-conwaycj
+```
 
 ## Add changes to Data.tsx file
 
    **Contribution requirements:**
 
    Please make prompts somewhat ambiguous. Obvious prompts may be requested to be changed.
-   For example: <br/><br/>
+   Obvious example:
 ```javascript
 {
   prompt: ["I", "love", <CoffeeEmoji />],
@@ -41,6 +60,13 @@ where "url you just copied" (without the quotation marks) is the url to this rep
 }
 ```
 
+  Ambiguous version: 
+```javascript
+{
+  prompt: [<GroupEmoji/>, <HeartEmoji/>, <CoffeeEmoji/>],
+  answer: "everyone loves coffee",
+}
+```
 
   ### prompt key:
   - Must be an array. 3 items max. Use any number of emojis - either use emojis from your device or find one from any of the listed sites:
@@ -76,13 +102,13 @@ where "url you just copied" (without the quotation marks) is the url to this rep
   Example without socials:
 ```javascript
 prompt: [<Star/>, <RunningTrack/>],
-answer: "Star Trek",
+answer: "star trek",
 ```
 
  Example with socials:
  ```javascript
 prompt: [<Star/>, <RunningTrack/>],
-answer: "Star Trek",
+answer: "star trek",
 socials: {
     LIurl: 'https://www.linkedin.com/in/conwaycj/',
     GHurl: 'https://github.com/ConwayCJ',
@@ -101,34 +127,33 @@ socials: {
 
   ```javascript
     git add Data.tsx
-    git commit -m "Add prompt "Star Trek""
+    git commit -m "Add prompt "star trek""
     git push
   ```
 
 
 # Submit your changes for review
 
-<img align="right" width="300" src="https://github.com/ConwayCJ/devmoji/assets/94498167/2aa410ce-ff0e-44ab-94cc-6b8be47b734f" alt="clone this repository" />
+If you go to your GitHub repository, you'll see a `Compare & pull request` button. Click on that button.
 
-If you go to your GitHub repository, you'll see a notification saying your branch is ahead by 1 commit. Click on the "contribute" button in your repository to open a menu to submit for a pull request.
+![68747470733a2f2f6669727374636f6e747269627574696f6e732e6769746875622e696f2f6173736574732f526561646d652f636f6d706172652d616e642d70756c6c2e706e67](https://github.com/ConwayCJ/devmoji/assets/94498167/a9927530-fbb7-45c9-b7e9-2be21b42ca7a)
 
-![4](https://github.com/ConwayCJ/devmoji/assets/94498167/82844ce8-36e8-4544-a5e5-f0666d30d8bc)\
+You should now see a new screen to open a pull request.
+<hr/>
 
-<hr>
-
-## Before submitting your PR
+### Before submitting your PR
 
 If your prompt/answer looks like this:
 
  ```javascript
 prompt: [<Star/>, <RunningTrack/>],
-answer: "Star Trek",
+answer: "star trek",
 socials: {
     LIurl: 'https://www.linkedin.com/in/conwaycj/',
     GHurl: 'https://github.com/ConwayCJ',
   }
 ```
-Your message should be: Add prompt "Star Trek"
+Your message should be: Add prompt "star trek"
 
 After you've checked that your message follows the proper format, click the "Create pull request" button.
 
