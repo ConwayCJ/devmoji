@@ -1,7 +1,7 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { HouseSharp, WbSunny, Coffee, AirplanemodeActive } from '@mui/icons-material'
+import { HouseSharp, WbSunny, Coffee, AirplanemodeActive, Favorite } from '@mui/icons-material'
 //React Icons Imports: https://react-icons.github.io/react-icons
-import { } from 'react-icons/fa';
+import { FaChessQueen } from 'react-icons/fa';
 import { PromptData } from '../main'
 
 const data: PromptData[] = [{
@@ -23,6 +23,13 @@ const data: PromptData[] = [{
   socials: {
     LIurl: "https://www.linkedin.com/in/nereidarondon/",
     GHurl: "https://github.com/NereidaRondon"
+  }
+}, {
+  prompt: [<FaChessQueen/>, "of", <Favorite/>],
+  answer: "queen of hearts",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/rachelkvanhorn/",
+    GHurl: "https://github.com/RKVanHorn"
   }
 }
 
