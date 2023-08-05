@@ -1,5 +1,5 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { Coffee, AirplanemodeActive } from '@mui/icons-material'
+import { Coffee, AirplanemodeActive, Favorite } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
 import { FaStar, FaChessQueen } from 'react-icons/fa';
 //GI React Icons Imports: https://react-icons.github.io/react-icons
