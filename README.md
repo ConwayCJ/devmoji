@@ -4,17 +4,12 @@ If you're looking to contribute, follow the steps below.
 
 # How to Contribute
 
-[Style Guidelines](/style_guidelines.md)
-
 <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/c989097a-acd9-4f46-984b-d2a696e1391d" align="right" width="250" alt="fork this repository"/>
-
-
 
 ## Fork this repository
 
 Fork this repository by clicking on the fork button on the top of the page.
 This will create a copy of this repository on your account.
-
 
 <img align="right" width="300" src="https://github.com/ConwayCJ/devmoji/assets/94498167/1e12f33a-2177-4584-aaa5-5c78e4cc92b3" alt="clone this repository" />
 
@@ -24,8 +19,8 @@ Now clone the forked repository to your machine. Go to your GitHub account, open
 
 Open a terminal and run the following git command:
 
-`git clone "url you just copied"`
-where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
+`git clone url-you-just-copied`
+where url-you-just-copied is replaced with the url to this repository (your fork of this project). See the previous steps to obtain the url.
 
 ## Create a branch
 
@@ -35,10 +30,10 @@ Change to the repository directory on your computer (if you are not already ther
 cd devmoji
 ```
 
-Now create a branch using the git switch command:
+Now create a branch using the git checkout command:
 
 ```javascript
-git checkout -b your-new-branch-name
+git checkout -b your-branch-name
 ```
 
 For example:
@@ -51,12 +46,15 @@ git checkout -b new-prompt-conwaycj
 
    **Contribution requirements:**
 
-   Please make prompts somewhat ambiguous. Obvious prompts may be requested to be changed.
+   - Your contribution MUST match our <a href="/style_guidelines.md">style guidelines</a>. Please ensure there are not drastic formatting changes.
+
+   - Please make prompts somewhat ambiguous. Obvious prompts may be requested to be changed.
+
    Obvious example:
 ```javascript
 {
-  prompt: ["I", "love", <CoffeeEmoji />],
-  answer: "I love coffee",
+  prompt: ["everyone", "loves", <CoffeeEmoji />],
+  answer: "everyone loves coffee",
 }
 ```
 
@@ -67,6 +65,7 @@ git checkout -b new-prompt-conwaycj
   answer: "everyone loves coffee",
 }
 ```
+
 
   ### prompt key:
   - Must be an array. 3 items max. Use any number of emojis - either use emojis from your device or find one from any of the listed sites:
@@ -82,84 +81,84 @@ git checkout -b new-prompt-conwaycj
     import { IconName } from "react-icons/fa";
 ```
 
-  - If I want to use Hero Icons, but it doesn't exist in Data.tsx - I must import it from that new location. The Import syntax will be on every page at [React Icons website](https://react-icons.github.io/react-icons)
+  - If I want to use an icon from "Hero Icons", but that import doesn't exist in Data.tsx - I must import it from that new location. The Import syntax will be in the "Hero Icons" section at the [React Icons website](https://react-icons.github.io/react-icons).
 
   ```javascript 
     //Font Awesome Icons:
     import { IconName } from "react-icons/fa";
     //Hero Icons:
     import { IconName } from "react-icons/hi";
-    
   ```
 
   ### answer key:
-  - Your answer must be a string. Separate words with spaces. Use lowercase lettering.
+  - Must be a string. Use lowercase lettering. See the "star trek" example below.
+    
+  - For example - your emoji's are implying "star trek"
+
+  - The "answer" key would be `'star trek'`
+
+
 
   ### socials key:
   - This is OPTIONAL. If you do not want links to your socials on the application, do not add a socials key.
-  - Follow the following format. LIurl must be a string. GHurl must be a string.
+  - The socials key is an object with two key:value pairs. GHurl and LIurl. Provide a link to your GitHub and LinkedIn as a string. 
 
-  Example without socials:
+  Completed example with socials:
+
 ```javascript
-prompt: [<Star/>, <RunningTrack/>],
-answer: "star trek",
+{
+  prompt: [<Star/>, <RunningTrack/>],
+  answer: "star trek",
+  socials: {
+    GHurl: 'https://github.com/ConwayCJ',
+    LIurl 'https://www.linkedin.com/in/conwaycj',
+  }
+}
 ```
 
- Example with socials:
- ```javascript
-prompt: [<Star/>, <RunningTrack/>],
-answer: "star trek",
-socials: {
-    LIurl: 'https://www.linkedin.com/in/conwaycj/',
-    GHurl: 'https://github.com/ConwayCJ',
-  }
-```
+# Check your work
+
+In the devmoji directory in your terminal, run `npm run dev`.
+
+Play through the game or skip to the last prompt. If your contribution was successful it will appear on the last page before the confetti screen.
+
+Put your answer in the input to check it was successful.
 
 # Committing & pushing changes
+
 <ol>
-   <li>For a smooth PR, make sure your changes meet the requirements of our <a href="/style_guidelines.md">style guidelines</a> </li>
+   <li>Before continuing these steps, make sure your changes meet the requirements of our <a href="/style_guidelines.md">style guidelines</a></li>
    <li>Add the changed Data.tsx file in your terminal</li>
-   <li>Commit your changes with the message "prompt answer here"</li>
-   <li>Push your changes to GitHub</li>
+   <li>Commit your changes with the message "add prompt your prompt here"</li>
+   <li>Push your changes to the branch you created earlier when doing the `git checkout` command</li>
+   <li>See below for an example</li>
 </ol>
 
 - Example add/commit/push workflow:
 
+  If you're in the devmoji directory in your terminal:
   ```javascript
-    git add Data.tsx
-    git commit -m "Add prompt "star trek""
-    git push
+    git add src/assets/Data.tsx
+    git commit -m "Add prompt star trek"
+    git push -u origin your-branch-name
   ```
-
 
 # Submit your changes for review
 
-If you go to your GitHub repository, you'll see a `Compare & pull request` button. Click on that button.
+- If you go to your GitHub repository, you'll see a `Compare & pull request` button. Click on that button.
 
-![68747470733a2f2f6669727374636f6e747269627574696f6e732e6769746875622e696f2f6173736574732f526561646d652f636f6d706172652d616e642d70756c6c2e706e67](https://github.com/ConwayCJ/devmoji/assets/94498167/a9927530-fbb7-45c9-b7e9-2be21b42ca7a)
+![9](https://github.com/ConwayCJ/devmoji/assets/94498167/55840d64-e494-42ea-b0b5-6d53f556ad98)
 
-You should now see a new screen to open a pull request.
+
+- You should now see a new screen to create a pull request.
 <hr/>
 
-### Before submitting your PR
+<ol>
+  <li>Check that your message matches the description of your commit message: `add prompt your-prompt-here`</li>
+  <li>Click the "create pull request" button.</li>
+</ol>
 
-If your prompt/answer looks like this:
-
- ```javascript
-prompt: [<Star/>, <RunningTrack/>],
-answer: "star trek",
-socials: {
-    LIurl: 'https://www.linkedin.com/in/conwaycj/',
-    GHurl: 'https://github.com/ConwayCJ',
-  }
-```
-Your message should be: Add prompt "star trek"
-
-After you've checked that your message follows the proper format, click the "Create pull request" button.
-
-<img width="600" src="https://github.com/ConwayCJ/devmoji/assets/94498167/97ad2397-7435-4b1a-8190-1183b9952bef" alt="clone this repository" />
-
-
+<img width="800" src="https://github.com/ConwayCJ/devmoji/assets/94498167/25eb1d98-7f6e-46d9-b38b-7fe46d62a62d" alt="clone this repository" />
 
 ## Thats it!
 
@@ -176,10 +175,11 @@ If the deployment is successful, there will be an option on the screen below to 
 ![6](https://github.com/ConwayCJ/devmoji/assets/94498167/239e14fc-cafe-4a46-9ceb-70c0570baa60)
 
 
-
 # Whats next? + Credits
 
-Congrats! You just completed the standard fork -> clone -> edit -> pull request workflow that you'll often encounter as a contributor!
+- Congrats! You just completed the standard fork -> clone -> edit -> pull request workflow that you'll often encounter as a contributor!
+
+- Please star this repository and share with someone you know who might enjoy contributing!
 
 ## Roadmap
 

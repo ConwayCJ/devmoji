@@ -1,7 +1,7 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { Coffee, AirplanemodeActive } from '@mui/icons-material'
+import { Coffee, AirplanemodeActive, Favorite } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaChessQueen } from 'react-icons/fa';
 //GI React Icons Imports: https://react-icons.github.io/react-icons
 import { GiTireTracks } from 'react-icons/gi'
 import { PromptData } from '../main'
@@ -22,6 +22,13 @@ const data: PromptData[] = [{
   socials: {
     LIurl: "https://www.linkedin.com/in/nereidarondon/",
     GHurl: "https://github.com/NereidaRondon"
+  }
+}, {
+  prompt: [<FaChessQueen/>, "of", <Favorite/>],
+  answer: "queen of hearts",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/rachelkvanhorn/",
+    GHurl: "https://github.com/RKVanHorn"
   }
 }]
 
