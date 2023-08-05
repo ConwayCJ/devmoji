@@ -1,12 +1,14 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { HouseSharp, WbSunny, Coffee, AirplanemodeActive, Favorite } from '@mui/icons-material'
-//React Icons Imports: https://react-icons.github.io/react-icons
-import { FaChessQueen } from 'react-icons/fa';
+import { Coffee, AirplanemodeActive } from '@mui/icons-material'
+//FA React Icons Imports: https://react-icons.github.io/react-icons
+import { FaStar, FaChessQueen } from 'react-icons/fa';
+//GI React Icons Imports: https://react-icons.github.io/react-icons
+import { GiTireTracks } from 'react-icons/gi'
 import { PromptData } from '../main'
 
 const data: PromptData[] = [{
-  prompt: [<WbSunny />, "day"],
-  answer: "sunny day",
+  prompt: [<FaStar />, <GiTireTracks />],
+  answer: "star trek",
   socials: {
     LIurl: 'https://www.linkedin.com/in/conwaycj/',
     GHurl: 'https://github.com/ConwayCJ',
@@ -14,9 +16,6 @@ const data: PromptData[] = [{
 }, {
   prompt: [<Coffee />, "is", "life"],
   answer: 'coffee is life'
-}, {
-  prompt: ["Welcome", <HouseSharp />],
-  answer: 'welcome home'
 }, {
   prompt: ["snakes", "on", "a", <AirplanemodeActive />],
   answer: "snakes on a plane",
@@ -31,8 +30,6 @@ const data: PromptData[] = [{
     LIurl: "https://www.linkedin.com/in/rachelkvanhorn/",
     GHurl: "https://github.com/RKVanHorn"
   }
-}
-
-]
+}]
 
 export default data
