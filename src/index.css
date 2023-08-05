@@ -4,8 +4,8 @@
 
 @font-face {
   font-family: 'shrekregular';
-  src: url('./src/assets/shrek-webfont.woff') format('woff'),
-    url('./src/assets/shrek-webfont.woff2') format('woff2');
+  src: url('./assets/shrek-webfont.woff') format('woff'),
+    url('./assets/shrek-webfont.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -78,9 +78,9 @@ body {
   }
 }
 
-@keyframes slideInFromLeft {
+@keyframes slideInFromBottom {
   0% {
-    transform: translateY(100%);
+    transform: translateY(150%);
   }
   100% {
     transform: translateX(0);
@@ -89,7 +89,7 @@ body {
 
 .shrekContainer {
   /* This section calls the slideInFromLeft animation we defined above */
-  animation: 4s ease-out -1s 1 slideInFromLeft;
+  animation: 10s ease-out -1s 1 slideInFromBottom;
 }
 
 .container {
