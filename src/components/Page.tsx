@@ -1,7 +1,7 @@
 // @ts-nocheck
 import Navigation from './Navigation'
 import { addArrayDelim, handleKeyDown } from '../utility'
-import React, { useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction } from 'react'
+import React, { useEffect, useRef, useReducer, MutableRefObject, Reducer, ReducerAction, ChangeEvent } from 'react'
 import { PromptData } from '../main'
 import Socials from './Socials'
 import { CheckCircleOutline } from '@mui/icons-material'
@@ -39,7 +39,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
         newGuess[action.wordIndex][action.charIndex] = action.inputValue
         return {
           ...prevState,
-          userGuess: newGuess
+          userGuess: newGuess,
         }
         break;
       default:
@@ -66,6 +66,74 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
     dispatch({ type: 'resetUserGuess' })
 
   }, [prompt])
+
+
+  /**
+   * @description Checks if user input is a number, prevents default if true. 
+   *              Also handles deleting + backwards navigation
+   * @param e     Any type of keyboard/click event
+   */
+  const handleKeyDown = (e: any, wordIndex: number, charIndex: number, formRef: HTMLFormElement) => {
+
+
+    let keyCode = e.key.charCodeAt()
+
+    console.log(keyCode)
+
+    //prevents input if not a-Z
+    if (!(keyCode < 123 && keyCode > 96 || keyCode > 64 && keyCode < 91)) {
+      e.preventDefault()
+    }
+
+    //checks if a-Z, removes letter if it has a value (to allow current inputs to change)
+    if (/^[a-z]$/.test(e.key) && e.target.value !== "") {
+      console.log("testing for key a-Z")
+      e.target.value = ""
+      console.log("updating current input to: ", e.key)
+    }
+
+    //if backspace, delete + navigate
+
+    if (keyCode === 66 && e.target.value === "") {
+
+      e.preventDefault()
+      const prevWordContainer = formRef.current?.childNodes[0].childNodes[wordIndex - 1]
+
+      if (e.target.previousElementSibling == null) {
+        if (prevWordContainer !== undefined) {
+          prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].focus()
+          prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].value = ""
+        }
+      } else {
+        e.target.previousElementSibling.focus()
+        e.target.previousElementSibling.value = ""
+      }
+    }
+
+    //navigate backwards
+    if (keyCode === 66) {
+      e.preventDefault()
+      e.target.value = ""
+
+      const prevWordContainer = formRef.current?.childNodes[0].childNodes[wordIndex - 1]
+
+      if (e.target.previousElementSibling == null) {
+        if (prevWordContainer !== undefined) {
+          prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].focus()
+        }
+      } else {
+        e.target.previousElementSibling.focus()
+      }
+    }
+
+    dispatch({
+      type: 'updateUserGuess',
+      inputValue: e.target.value,
+      charIndex: charIndex,
+      wordIndex: wordIndex
+    })
+  }
+
 
   return (
     <div className={`transition ease-in-out delay-300 w-full h-screen flex flex-col items-center justify-end 
@@ -94,25 +162,26 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
                   {word.split("").map((character, charIndex) => {
 
                     const handleChange = (e: React.BaseSyntheticEvent) => {
+                      console.log("handleChange event: ")
 
+
+                      const formChildren = formRef.current?.childNodes[0]
+
+                      console.log("navigating forward")
+                      //Navigate Forward
+                      if (formChildren?.childNodes[wordIndex].childNodes[charIndex + 1]) {
+                        formChildren?.childNodes[wordIndex].childNodes[charIndex + 1].focus()
+                      } else {
+                        formChildren?.childNodes[wordIndex + 1]?.childNodes[0]?.focus()
+                      }
+
+                      console.log("dispatching updateUserGuess")
                       dispatch({
                         type: 'updateUserGuess',
                         inputValue: e.target.value,
                         charIndex: charIndex,
                         wordIndex: wordIndex
                       })
-
-                      const formChildren = formRef.current?.childNodes[0]
-
-                      //Navigate Forward
-                      if (formChildren?.childNodes[wordIndex].childNodes[charIndex + 1]) {
-                        formChildren?.childNodes[wordIndex].childNodes[charIndex + 1].focus()
-                      }
-                      //Skip to next word
-                      if (e.target.nextElementSibling == null && wordIndex + 1 !== formChildren?.childNodes.length) {
-                        console.log(formChildren?.childNodes)
-                        formChildren?.childNodes[wordIndex + 1].childNodes[0].focus()
-                      }
                     }
 
                     return (
