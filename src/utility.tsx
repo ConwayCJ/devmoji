@@ -36,6 +36,23 @@ export const handleKeyDown = (e: any, wordIndex: number, charIndex: number, form
   }
 
   //if backspace, delete + navigate
+
+  if (keyCode === 66 && e.target.value === "") {
+
+    e.preventDefault()
+    const prevWordContainer = formRef.current?.childNodes[0].childNodes[wordIndex - 1]
+
+    if (e.target.previousElementSibling == null) {
+      if (prevWordContainer !== undefined) {
+        prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].focus()
+        prevWordContainer.childNodes[prevWordContainer.childNodes.length - 1].value = ""
+      }
+    } else {
+      e.target.previousElementSibling.focus()
+      e.target.previousElementSibling.value = ""
+    }
+  }
+
   if (keyCode === 66) {
     e.preventDefault()
     e.target.value = ""
