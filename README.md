@@ -188,9 +188,15 @@ If the deployment is successful, there will be an option on the screen below to 
 3. &#x2611; Create a detailed README file with instructions on how to contribute.
 4. &#x2611; Add a "Credits" section for contributors' socials.
 5. &#x2611; Style the project.
-6. &#x2B55; Enhance the user experience by implementing features such as:
-   - Tracking the number of prompts users have answered correctly.
-   - Displaying confetti in the exit screen only if all prompts are answered correctly.
+6. &#x2B55; Improve styling:
+   -  Change gradients on each page to something more distinct
+   -  Transition colors instead of a direct swap
+   -  Make getting a correct prompt more clear (replace X\O and bg color change)
+  
+7. &#x2B55; Enhance user experience by implementing features such as:
+   - Tracking the number of prompts users have answered correctly & displaying unique win page. 
+   - Track progress using login/DB or local storage
+   
 
 ## Code Stack
 The project is built using the following technologies and frameworks:
