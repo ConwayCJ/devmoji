@@ -17,8 +17,8 @@ const data: PromptData[] = [{
   prompt: [<Coffee />, "is", "life"],
   answer: 'coffee is life'
 }, {
-  prompt: ["snakes", "on", "a", <AirplanemodeActive />],
-  answer: "snakes on a plane",
+  prompt: [<AirplanemodeActive />, "mode"],
+  answer: "airplane mode",
   socials: {
     LIurl: "https://www.linkedin.com/in/nereidarondon/",
     GHurl: "https://github.com/NereidaRondon"
