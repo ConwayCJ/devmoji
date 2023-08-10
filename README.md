@@ -1,6 +1,9 @@
-# DevMoji
-This project aims to guide developers on opensource contribution for a simpler application. 
-If you're looking to contribute, follow the steps below.
+# About DevMoji
+DevMoji was created by Christopher Conway. As a fresh bootcamp graduate, one of the most daunting goals was to contribute to opensource. In an effort to tackle this problem for other developers facing the same experience - he created DevMoji.
+
+It provides a straight-forward way to contribute to opensource in a safe, risk-free environment that provides ample feedback and a way to actually see your contribution on the application. 
+
+Please consider contributing to the project and seeing your own prompt/answer on the application! 
 
 # How to Contribute
 
