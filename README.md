@@ -53,6 +53,8 @@ git checkout -b new-prompt-conwaycj
 
    - Please make prompts somewhat ambiguous. Obvious prompts may be requested to be changed.
 
+   - Limit the amount of prompts you add to 2.
+
    Obvious example:
 ```javascript
 {
