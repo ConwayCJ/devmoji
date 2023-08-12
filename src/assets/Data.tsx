@@ -1,9 +1,9 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
 import { Coffee, AirplanemodeActive, Favorite } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
-import { FaStar, FaChessQueen } from 'react-icons/fa';
+import { FaStar, FaChessQueen, FaBed, FaStepBackward, FaHouseUser, FaSmile, FaClock } from 'react-icons/fa';
 //GI React Icons Imports: https://react-icons.github.io/react-icons
-import { GiTireTracks } from 'react-icons/gi'
+import { GiBee, GiBowlingStrike, GiBowman, GiConversation, GiSewingNeedle, GiTireTracks } from 'react-icons/gi'
 import { PromptData } from '../main'
 
 const data: PromptData[] = [{
@@ -29,6 +29,41 @@ const data: PromptData[] = [{
   socials: {
     LIurl: "https://www.linkedin.com/in/rachelkvanhorn/",
     GHurl: "https://github.com/RKVanHorn"
+  }
+}, {
+  prompt: [<GiSewingNeedle/>, <GiBee/>, "it"],
+  answer: "so be it",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
+    GHurl: "https://github.com/patrick-murrayjr",
+  }
+}, {
+  prompt: [<GiBowlingStrike/>, "a", <GiConversation/>],
+  answer: "strike a conversation",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
+    GHurl: "https://github.com/patrick-murrayjr",
+  }
+}, {
+  prompt: [<FaStepBackward/>, "to", <FaBed/>],
+  answer: "back to sleep",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
+    GHurl: "https://github.com/patrick-murrayjr",
+  }
+}, {
+  prompt: [<FaHouseUser/>, <GiBowman/>, "ing"],
+  answer: "house hunting",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
+    GHurl: "https://github.com/patrick-murrayjr",
+  }
+}, {
+  prompt: [<FaSmile/>, <FaClock/>],
+  answer: "happy hour",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
+    GHurl: "https://github.com/patrick-murrayjr",
   }
 }]
 
