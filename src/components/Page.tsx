@@ -75,10 +75,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
    */
   const handleKeyDown = (e: any, wordIndex: number, charIndex: number, formRef: HTMLFormElement) => {
 
-
     let keyCode = e.key.charCodeAt()
-
-    console.log(keyCode)
 
     //prevents input if not a-Z
     if (!(keyCode < 123 && keyCode > 96 || keyCode > 64 && keyCode < 91)) {
@@ -87,9 +84,7 @@ export default function Page({ answer, prompt, socials, questionNumber }: PagePr
 
     //checks if a-Z, removes letter if it has a value (to allow current inputs to change)
     if (/^[a-z]$/.test(e.key) && e.target.value !== "") {
-      console.log("testing for key a-Z")
       e.target.value = ""
-      console.log("updating current input to: ", e.key)
     }
 
     //if backspace, delete + navigate
