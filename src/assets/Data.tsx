@@ -29,8 +29,7 @@ const data: PromptData[] = [{
   socials: {
     LIurl: "https://www.linkedin.com/in/rachelkvanhorn/",
     GHurl: "https://github.com/RKVanHorn"
-  }
-},{
+  }, {
   prompt: [<FaSpider/>, "man"],
   answer: "spider man",
   socials: {
