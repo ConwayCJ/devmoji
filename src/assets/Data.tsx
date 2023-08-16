@@ -1,5 +1,5 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { Coffee, AirplanemodeActive, Favorite, RocketLaunch } from '@mui/icons-material'
+import { Coffee, AirplanemodeActive, Favorite, AllInclusive, Loop, RocketLaunch } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
 import { FaStar, FaChessQueen, FaSpider, FaStepBackward, FaHouseUser, FaBed } from 'react-icons/fa'
 //GI React Icons Imports: https://react-icons.github.io/react-icons
@@ -51,13 +51,21 @@ const data: PromptData[] = [{
     LIurl: "https://www.linkedin.com/in/patrick-f-murray-jr/",
     GHurl: "https://github.com/patrick-murrayjr"
   }
+
 },{
   prompt: [<RocketLaunch />,'ship'],
   answer: "space ship",
   socials : {
     LIurl: "https://www.linkedin.com/in/dgloria/",
     GHurl: "https://github.com/gloriadukuzeyesu"
-}
+   }
+}, {
+  prompt: ["an", <AllInclusive />, <Loop />],
+  answer: "an infinite loop",
+  socials: {
+    LIurl: "",
+    GHurl: "https://github.com/laguila-src"
+  }
 }]
 
 export default data
