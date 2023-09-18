@@ -1,9 +1,10 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
-import { Coffee, AirplanemodeActive, Favorite, AllInclusive, Loop, RocketLaunch, Construction } from '@mui/icons-material'
+import { Coffee, AirplanemodeActive, Favorite, AllInclusive, Loop, RocketLaunch, Construction, Celebration, Pool } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
 import { FaStar, FaChessQueen, FaSpider, FaStepBackward, FaHouseUser, FaBed, FaPaintRoller } from 'react-icons/fa'
 //GI React Icons Imports: https://react-icons.github.io/react-icons
 import { GiTireTracks, GiBowman, GiBearFace } from 'react-icons/gi'
+
 
 import { PromptData } from '../main'
 
@@ -83,6 +84,13 @@ const data: PromptData[] = [{
     GHurl: "https://github.com/movarnell"
   }
 },
-]
+{
+   prompt: [<Pool />, <Celebration /> ],
+   answer: "pool party",
+   socials: {
+     LIurl: "https://www.linkedin.com/in/christopher-mendence-579245264/",
+     GHurl: "https://github.com/cmendence"
+},
+}]
 
 export default data
