@@ -4,6 +4,8 @@ import { Coffee, AirplanemodeActive, Favorite, AllInclusive, Loop, RocketLaunch,
 import { FaStar, FaChessQueen, FaSpider, FaStepBackward, FaHouseUser, FaBed, FaPaintRoller } from 'react-icons/fa'
 //GI React Icons Imports: https://react-icons.github.io/react-icons
 import { GiTireTracks, GiBowman, GiBearFace } from 'react-icons/gi'
+import CelebrationIcon from '@mui/icons-material/Celebration';
+import PoolIcon from '@mui/icons-material/Pool';
 
 import { PromptData } from '../main'
 
@@ -83,6 +85,13 @@ const data: PromptData[] = [{
     GHurl: "https://github.com/movarnell"
   }
 },
-]
+{
+   prompt: [<PoolIcon />, <CelebrationIcon /> ],
+   answer: "pool party",
+   socials: {
+     LIurl: "https://www.linkedin.com/in/christopher-mendence-579245264/",
+     GHurl: "https://github.com/cmendence"
+},
+}]
 
 export default data
