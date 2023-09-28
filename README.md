@@ -98,7 +98,7 @@ git checkout -b new-prompt-conwaycj
   ### answer key:
   - Must be a string. Use lowercase lettering. See the "star trek" example below.
     
-  - For example - your emoji's are implying "star trek"
+  - For example - your emojis are implying "star trek"
 
   - The "answer" key would be `'star trek'`
 
@@ -116,7 +116,7 @@ git checkout -b new-prompt-conwaycj
   answer: "star trek",
   socials: {
     GHurl: 'https://github.com/ConwayCJ',
-    LIurl 'https://www.linkedin.com/in/conwaycj',
+    LIurl: 'https://www.linkedin.com/in/conwaycj',
   }
 }
 ```
