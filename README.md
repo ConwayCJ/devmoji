@@ -116,7 +116,7 @@ git checkout -b new-prompt-conwaycj
   answer: "star trek",
   socials: {
     GHurl: 'https://github.com/ConwayCJ',
-    LIurl 'https://www.linkedin.com/in/conwaycj',
+    LIurl: 'https://www.linkedin.com/in/conwaycj',
   }
 }
 ```
