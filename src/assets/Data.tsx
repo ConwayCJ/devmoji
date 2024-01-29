@@ -1,12 +1,14 @@
 //Material UI Imports: https://mui.com/material-ui/material-icons/
 import { Coffee, AirplanemodeActive, Favorite, AllInclusive, Loop, RocketLaunch, Construction, Celebration, Pool } from '@mui/icons-material'
 //FA React Icons Imports: https://react-icons.github.io/react-icons
-import { FaStar, FaChessQueen, FaSpider, FaStepBackward, FaHouseUser, FaBed, FaPaintRoller } from 'react-icons/fa'
+import { FaStar, FaChessQueen, FaSpider, FaStepBackward, FaHouseUser, FaBed, FaPaintRoller,  } from 'react-icons/fa'
 //GI React Icons Imports: https://react-icons.github.io/react-icons
 import { GiTireTracks, GiBowman, GiBearFace } from 'react-icons/gi'
+import { AiFillRedditSquare } from "react-icons/ai";
 
 
 import { PromptData } from '../main'
+
 
 const data: PromptData[] = [{
   prompt: [<FaStar />, <GiTireTracks />],
@@ -16,6 +18,13 @@ const data: PromptData[] = [{
     GHurl: 'https://github.com/ConwayCJ',
   }
 }, {
+  prompt: [<AiFillRedditSquare/>, "man"],
+  answer: "Bat man",
+  socials: {
+    LIurl: "https://www.linkedin.com/in/ChardPeter1/",
+    GHurl: "https://github.com/Chardpeter"
+  }
+},{
   prompt: [<Coffee />, "is", "life"],
   answer: 'coffee is life'
 }, {
