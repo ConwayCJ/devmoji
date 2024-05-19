@@ -5,7 +5,7 @@ It provides a straight-forward way to contribute to opensource in a safe, risk-f
 
 Please consider contributing to the project and seeing your own prompt/answer on the application! 
 
-# How to Contribute
+# Contributing
 
 <img src="https://github.com/ConwayCJ/devmoji/assets/94498167/c989097a-acd9-4f46-984b-d2a696e1391d" align="right" width="250" alt="fork this repository"/>
 
